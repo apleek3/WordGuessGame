@@ -67,16 +67,6 @@ console.log(userText);
 //Code to make letters appear when compared with the "answer"
 
 
-/************************************** 
-//Creating new div to display words?
-// var newDiv = document.createElement("div");
-// newDiv.textContent = "example";
-
-// targetDiv.appendChild(newDiv);
-***************************************/
-
-
-
 
 //Code to count the number of guesses left
 
@@ -88,6 +78,11 @@ console.log(userText);
  * FUNCTIONS
  * 
  ********************************/
+function removeElement(id) {
+    var elem = document.getElementById(id);
+    return elem.parentNode.removeChild(elem);
+}
+
 
 //Avatar Keystroke Checker
 document.onkeyup = function (event) {
@@ -97,33 +92,46 @@ document.onkeyup = function (event) {
 
     switch (avatarLetters) {
         case "a":
-            console.log("a");
-            var div = document.createElement("div");
+            document.getElementById("firstLetter").innerHTML = "A";
+            document.getElementById("firstLetter").style.fontSize = "60px";
+
+
+            document.getElementById("thirdLetter").innerHTML = "A";
+            document.getElementById("thirdLetter").style.fontSize = "60px";
+
+
+            document.getElementById("fifthLetter").innerHTML = "A";
+            document.getElementById("fifthLetter").style.fontSize = "60px";
+            document.getElementById("hint").innerHTML = "NICE ONE!";
+            /*var div = document.createElement("div");
             div.style.width = "100px";
             div.style.height = "100px";
             div.style.background = "red";
             div.style.color = "white";
             div.innerHTML = "Hello";
-            document.getElementById("letterPop").appendChild(div);
+            document.getElementById("").appendChild(div);*/
             break;
-        case "v":
-            console.log("v");
-            break;
-        case "a":
-            console.log("a");
-            break;
-        case "t":
-            console.log("t");
-            break;
-        case "a":
-            console.log("a");
-            break;
-        case "r":
-            console.log("r");
-            break;
-        default:
-            console.log("Please guess another letter!")
 
+        case "v":
+            document.getElementById("secondLetter").innerHTML = "V";
+            document.getElementById("secondLetter").style.fontSize = "60px";
+            document.getElementById("hint").innerHTML = "YOU GOT ANOTHER!";
+            break;
+
+        case "t":
+            document.getElementById("fourthLetter").innerHTML = "T";
+            document.getElementById("fourthLetter").style.fontSize = "60px";
+            document.getElementById("hint").innerHTML = "GOOD JOB!";
+            break;
+
+        case "r":
+            document.getElementById("sixthLetter").innerHTML = "R";
+            document.getElementById("sixthLetter").style.fontSize = "60px";
+            document.getElementById("hint").innerHTML = "NAILED IT!";
+            break;
+
+        default:
+            document.getElementById("hint").innerHTML = "NOPE! TRY AGAIN";
     }
 
 
