@@ -1,13 +1,13 @@
-// Connect the user to the presentation by being able to type letters:
-var userText = document.getElementById("guess");
-document.onkeyup = function(event) {
-    userText.textContent = event.key;
-  };
 
-/*
+/*********************************
+ * 
+ * GLOBAL DECLARATIONS
+ * 
+ ********************************/
+
 // Code to CREATE the movies as code
 let moviesList = [
-    
+ 
     {//First object: movie "The Goonies"
     name: "Arrival",
     date: 2016,
@@ -48,7 +48,12 @@ let moviesList = [
 
 
 ];
-*/
+
+var userText = document.getElementById("guess");
+
+
+
+
 /*
 function arrivalCheck () {
     var arrivalLetters = ["a","r","r","i","v","a","l"];
@@ -69,18 +74,8 @@ function arrivalCheck () {
 
 
 // Code to compare every letter in the arrays of letters for the correct entry
-
-/*
-function firstLetter () {
-    if (letter === "a") {
-    console.log("true")
-
-    } else {
-    console.log("false");
-}
-}
-*/
-
+// also
+// Connect the user to the presentation by being able to type letters:
 
 
 // Code to make the letters or "guesses" appear in  row
@@ -98,3 +93,44 @@ function firstLetter () {
 
 
 //Code to restart the game if player wins or loses
+
+/*********************************
+ * 
+ * FUNCTIONS
+ * 
+ ********************************/
+document.onkeyup = function(event) {
+
+    var letter = event.key;
+    userText.textContent = letter;
+
+    switch (letter) {
+        case "a":
+            console.log("a");
+            break;
+        case "v":
+            console.log("v");
+            break;
+        case "a":
+            console.log("a");
+            break;
+        case "t":
+            console.log("t");
+            break;
+        case "a":
+            console.log("a");
+            break;
+        case "r":
+            console.log("r");
+            break;
+        default:
+            console.log("Please guess another letter!") 
+        
+    }
+
+
+};
+
+
+
+
