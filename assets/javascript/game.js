@@ -4,7 +4,7 @@
  * GLOBAL DECLARATIONS
  * 
  ********************************/
-
+/*
 // Code to CREATE the movies as code
 let moviesList = [
  
@@ -48,9 +48,9 @@ let moviesList = [
 
 
 ];
-
+*/
 var userText = document.getElementById("guess");
-
+console.log(userText);
 
 
 
