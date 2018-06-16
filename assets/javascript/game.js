@@ -54,23 +54,6 @@ console.log(userText);
 
 
 
-/*
-function arrivalCheck () {
-    var arrivalLetters = ["a","r","r","i","v","a","l"];
-    var sendToPrinter = arrivalLetters.indexOf(userText);
-    if (sendToPrinter >= 0) {
-        console.log(sendToPrinter);
-
-    } else {
-        console.log(sendToPrinter);
-    }
-
-    
-
-    document.getElementById("demo").innerHTML = sendToPrinter;
-}
-*/
-
 
 
 // Code to compare every letter in the arrays of letters for the correct entry
@@ -80,12 +63,18 @@ function arrivalCheck () {
 
 // Code to make the letters or "guesses" appear in  row
 
-//function printLetter () {
-//   document.getElementById("firstLetter").innerHTML = ages.some(checkAdult);
-//}
-
 
 //Code to make letters appear when compared with the "answer"
+
+
+/************************************** 
+//Creating new div to display words?
+// var newDiv = document.createElement("div");
+// newDiv.textContent = "example";
+
+// targetDiv.appendChild(newDiv);
+***************************************/
+
 
 
 
@@ -99,14 +88,23 @@ function arrivalCheck () {
  * FUNCTIONS
  * 
  ********************************/
-document.onkeyup = function(event) {
 
-    var letter = event.key;
-    userText.textContent = letter;
+//Avatar Keystroke Checker
+document.onkeyup = function (event) {
 
-    switch (letter) {
+    var avatarLetters = event.key;
+    userText.textContent = avatarLetters;
+
+    switch (avatarLetters) {
         case "a":
             console.log("a");
+            var div = document.createElement("div");
+            div.style.width = "100px";
+            div.style.height = "100px";
+            div.style.background = "red";
+            div.style.color = "white";
+            div.innerHTML = "Hello";
+            document.getElementById("letterPop").appendChild(div);
             break;
         case "v":
             console.log("v");
@@ -124,8 +122,8 @@ document.onkeyup = function(event) {
             console.log("r");
             break;
         default:
-            console.log("Please guess another letter!") 
-        
+            console.log("Please guess another letter!")
+
     }
 
 
@@ -134,3 +132,44 @@ document.onkeyup = function(event) {
 
 
 
+/*****************************************************************************
+ * Notes for later - I can use the following code example to create new Divs that display data about my movies above in the columns.
+ * **************************************************************************************************************
+
+    // Array holds all of the drinks available
+    var drinkList = [
+      "Coffee: $5",
+      "Espresso: $7",
+      "Cappuccino: $6",
+      "Latte: $4",
+      "Tea: $3",
+      "Ice Coffee: $6",
+      "Ice Espresso: $8",
+      "Ice Latte: $6",
+      "Ice Tea: $4"
+    ];
+
+    // 1. Create code that "grabs" the div with the matching id (#drink-options);
+    // ... 
+
+    var targetDiv = document.getElementById("drink-options");
+    targetDiv.textContent = text;
+    // ...
+
+
+    // 2. Create a for loop that creates HTML content of all the drinks using JavaScript.
+    // HINT: You will need to use each of the following methods: createElement, textContent, appendChild
+    // ...
+
+    var text = "Here are drinks we offer: ";
+    var i;
+    for (i = 0; i < drinkList.length; i++) {
+      text += drinkList[i] + "        ";
+    }
+
+    
+    var newDiv = document.createElement("div");
+    newDiv.textContent = (text);
+    targetDiv.appendChild(newDiv);
+
+    **********************************************************/

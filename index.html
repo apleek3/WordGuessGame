@@ -29,7 +29,7 @@
     <!-- Latest compiled and minified JavaScript. Will use my own for this homework assignment
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>-->
-  
+
 
 
 
@@ -71,41 +71,72 @@
             <div class="row content">
                 <div class="col-sm-2 sidenav">
                     <p>
-                        <a href="RutgersInfoWidget#">Rutgers Info Widget</a>
+                        <a href="#rutgersInfoWidget">Rutgers Info Widget</a>
                     </p>
                     <p>
-                        <a href="">Link</a>
+                        <a href="#rpgGame">RPG Game</a>
                     </p>
                     <p>
-                        <a href="#">Link</a>
+                        <a href="#triva">Trivia</a>
+                    </p>
+                    <p>
+                        <a href="#hangman">Hangman</a>
+                    </p>
+                    <p>
+                        <a href="#rockPaperScissors">Rock Paper Scissors</a>
                     </p>
                 </div>
-                <div class="col-sm-8 text-left">
+                <div class="col-sm-8 text-center">
                     <h1>Hangman!</h1>
                     <p>Grade "A" Movies. Give it a whirl and guess the movie!</p>
+
                     <br>
+
                     <p id="guess"></p>
+
                     <hr>
-                    <h3>Don't let him hang!</h3>
-                    <p id="demo">Lorem ipsum...</p>
+
+                    <br>
+                    <br>
+
+                    <div class="fluid-container text-center">
+                        <div class="row">
+                            <div class="col-sm-1" id="firstLetter">a</div>
+                            <div class="col-sm-1" id="secondLetter">b</div>
+                            <div class="col-sm-1" id="thirdLetter">c</div>
+                            <div class="col-sm-1" id="fourthLetter">e</div>
+                            <div class="col-sm-1" id="fifthLetter">f</div>
+                            <div class="col-sm-1" id="sixthLetter">g</div>
+                            <div class="col-sm-1" id="seventhLetter">h</div>
+                            <div class="col-sm-1" id="eighthLetter">i</div>
+                            <div class="col-sm-1" id="ninthLetter">j</div>
+                            <div class="col-sm-1" id="tenthLetter">k</div>
+                            <div class="col-sm-1" id="eleventhLetter">l</div>
+                            <div class="col-sm-1" id="twelfthLetter">m</div>
+                        </div>
+                    </div>
+
+
+                    <h3 id="hint">Don't let him hang!</h3>
+
+
                 </div>
                 <div class="col-sm-2 sidenav">
                     <div class="well">
-                        <p></p>
+                        <p id="guessesLeft">Guesses Left</p>
                     </div>
                     <div class="well">
-                        <p></p>
+                        <p id="winsCounter">Wins Counter</p>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="sticky-bottom padding footer border">
-            <span>Copyright &copy;</span>
-        </div>
+            <div class="sticky-bottom padding footer border">
+                <span>Copyright &copy;</span>
+            </div>
 
-  <script src="assets/javascript/game.js"></script>
-    
+            <script src="assets/javascript/game.js"></script>
+
     </body>
 
 </html>
