@@ -4,7 +4,7 @@
  * GLOBAL DECLARATIONS
  * 
  ********************************/
-/*
+
 // Code to CREATE the movies as code
 let moviesList = [
  
@@ -13,6 +13,7 @@ let moviesList = [
     date: 2016,
     starring: ["Amy Adams","Jeremy Renner","Forest Whitaker"],
     letters: ["a","r","r","i","v","a","l"],
+    lettercount: [7],
     },
 
     {//Second object: movie "Aliens"
@@ -20,6 +21,7 @@ let moviesList = [
     date: 1986,
     starring: ["Sigourney Weaver" , "Micahel Biehn", "Paul Reiser"],
     letters: ["a","l","i","e","n"],
+    lettercount: [5],
     },
 
     {//Third object: movie "Airplane"
@@ -27,6 +29,7 @@ let moviesList = [
     date: 1980,
     starring: ["Robert Hays", "Julie Hagerty"],
     letters: ["a","i","r","p","l","a","n","e"],
+    lettercount:[8],
 
     },
 
@@ -34,7 +37,8 @@ let moviesList = [
      name:"Argo",
      date: 2012,
      starring: ["Ben Affleck","Bryan Cranston","Alan Arkin"],
-     letters: ["a","r","g","i"],
+     letters: ["a","r","g","o"],
+     lettercount:[4],
  
     },
 
@@ -43,12 +47,17 @@ let moviesList = [
      date: 2009,
      starring: ["Sam Worthington","Sigourney Weaver","Zoe Saldana"],
      letters: ["a","v","a","t","a","r"],
+     lettercount: [6],
  
     },
 
 
 ];
-*/
+
+let wins = 0;
+let lives = 12;
+
+
 var userText = document.getElementById("guess");
 console.log(userText);
 
@@ -83,8 +92,47 @@ function removeElement(id) {
     return elem.parentNode.removeChild(elem);
 }
 
+document.onload = function (event) {
+    console.log("test");
+    //document.getElementById("winsCounter").style.block = wins;
+    
+}
 
-//Avatar Keystroke Checker
+
+
+//**************Alphabet checker****************
+document.onkeypress = function (event) {
+    
+    var alphabet = event.key;
+    userText.textContent = alphabet;
+
+        for (i = 0; i < moviesList[0].letters.length; i++) {
+            if ((alphabet === (moviesList[4].letters[i])))  {
+                console.log("LETTER MATCH");
+                document.getElementById("letterCountdown").innerHTML = moviesList[4].lettercount;
+                moviesList[4].lettercount--;
+                
+
+            } 
+            
+            else if ((alphabet !== (moviesList[4].letters[i]))) {
+                console.log("NOPE");
+                document.getElementById("guessesLeft").innerHTML = lives;
+                lives--;
+                
+            
+            }
+
+            else {
+                alert("Not sure what you typed. Try again!");
+            }
+            
+
+        }
+
+}
+
+//**************Avatar Keystroke Checker********
 document.onkeyup = function (event) {
 
     var avatarLetters = event.key;
