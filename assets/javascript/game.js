@@ -7,48 +7,48 @@
 
 // Code to CREATE the movies as code
 let moviesList = [
- 
+
     {//First object: movie "The Goonies"
-    name: "Arrival",
-    date: 2016,
-    starring: ["Amy Adams","Jeremy Renner","Forest Whitaker"],
-    letters: ["a","r","r","i","v","a","l"],
-    lettercount: [7],
+        name: "Arrival",
+        date: 2016,
+        starring: ["Amy Adams", "Jeremy Renner", "Forest Whitaker"],
+        letters: ["a", "r", "r", "i", "v", "a", "l"],
+        lettercount: [6],
     },
 
     {//Second object: movie "Aliens"
-    name: "Alien",
-    date: 1986,
-    starring: ["Sigourney Weaver" , "Micahel Biehn", "Paul Reiser"],
-    letters: ["a","l","i","e","n"],
-    lettercount: [5],
+        name: "Alien",
+        date: 1986,
+        starring: ["Sigourney Weaver", "Micahel Biehn", "Paul Reiser"],
+        letters: ["a", "l", "i", "e", "n"],
+        lettercount: [4],
     },
 
     {//Third object: movie "Airplane"
-    name:"Airplane",
-    date: 1980,
-    starring: ["Robert Hays", "Julie Hagerty"],
-    letters: ["a","i","r","p","l","a","n","e"],
-    lettercount:[8],
+        name: "Airplane",
+        date: 1980,
+        starring: ["Robert Hays", "Julie Hagerty"],
+        letters: ["a", "i", "r", "p", "l", "a", "n", "e"],
+        lettercount: [7],
 
     },
 
     {//Third object: movie "Airplane"
-     name:"Argo",
-     date: 2012,
-     starring: ["Ben Affleck","Bryan Cranston","Alan Arkin"],
-     letters: ["a","r","g","o"],
-     lettercount:[4],
- 
+        name: "Argo",
+        date: 2012,
+        starring: ["Ben Affleck", "Bryan Cranston", "Alan Arkin"],
+        letters: ["a", "r", "g", "o"],
+        lettercount: [3],
+
     },
 
     {//Third object: movie "Airplane"
-     name:"Avatar",
-     date: 2009,
-     starring: ["Sam Worthington","Sigourney Weaver","Zoe Saldana"],
-     letters: ["a","v","a","t","a","r"],
-     lettercount: [6],
- 
+        name: "Avatar",
+        date: 2009,
+        starring: ["Sam Worthington", "Sigourney Weaver", "Zoe Saldana"],
+        letters: ["a", "v", "a", "t", "a", "r"],
+        lettercount: [6],
+
     },
 
 
@@ -56,13 +56,163 @@ let moviesList = [
 
 let wins = 0;
 let lives = 12;
-
-
 var userText = document.getElementById("guess");
-console.log(userText);
+//console.log(userText);
 
 
 
+/*********************************
+ * 
+ * FUNCTIONS
+ * 
+ ********************************/
+
+//function I created in case I need to remove any divs that are appended
+function removeElement(id) {
+    var elem = document.getElementById(id);
+    return elem.parentNode.removeChild(elem);
+}
+
+document.onload = function (event) {
+    console.log("test");
+    //document.getElementById("winsCounter").style.block = wins;
+
+}
+
+//Begins displaying the global counters
+document.getElementById("guessesLeft").innerHTML = (lives);
+document.getElementById("winsCounter").innerHTML = (wins);
+
+
+
+//**************Avatar Keystroke Checker********
+document.getElementById("firstButton").onclick = function (event) {
+
+
+
+    console.log("firstButton test");
+    document.onkeyup = function (event) {
+
+        document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount);;
+
+
+        //sets the conditions for running this code as long as number of lives is greater than 0)
+        if ((lives > 0) && (moviesList[4].lettercount > 0)) {
+            var avatarLetters = event.key;
+            userText.textContent = avatarLetters;
+           
+
+            //Begins displaying the counters
+            document.getElementById("guessesLeft").innerHTML = (lives);
+            document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount);;
+
+            //checs the letters against the users input and displays them in the proper boxes
+            switch (avatarLetters.toLowerCase()) {
+                case "a":
+                    document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount -= 3);
+                    document.getElementById("hint").innerHTML = "NICE ONE!";
+                    
+                    
+                    document.getElementById("firstLetter").innerHTML = "A";
+                    document.getElementById("firstLetter").style.fontSize = "60px";
+
+
+                    document.getElementById("thirdLetter").innerHTML = "A";
+                    document.getElementById("thirdLetter").style.fontSize = "60px";
+
+
+                    document.getElementById("fifthLetter").innerHTML = "A";
+                    document.getElementById("fifthLetter").style.fontSize = "60px";
+
+
+                    console.log("LETTER MATCH");
+
+
+                    break;
+
+                case "v":
+                    document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount--);
+                    document.getElementById("hint").innerHTML = "YOU GOT ANOTHER!";
+                    
+                    document.getElementById("secondLetter").innerHTML = "V";
+                    document.getElementById("secondLetter").style.fontSize = "60px";
+                    
+
+                    console.log("LETTER MATCH");
+
+
+                    break;
+
+                case "t":
+                    document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount -= 1);
+                    document.getElementById("hint").innerHTML = "GOOD JOB!";
+                
+                
+                    document.getElementById("fourthLetter").innerHTML = "T";
+                    document.getElementById("fourthLetter").style.fontSize = "60px";
+                                  
+
+                    console.log("LETTER MATCH");
+
+                    break;
+
+                case "r":
+                    document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount--);
+                    document.getElementById("hint").innerHTML = "NAILED IT!";
+                
+                    document.getElementById("sixthLetter").innerHTML = "R";
+                    document.getElementById("sixthLetter").style.fontSize = "60px";
+                       
+
+                    console.log("LETTER MATCH");
+
+                    break;
+
+                default:
+                    document.getElementById("guessesLeft").innerHTML = (lives--);              
+                    document.getElementById("hint").innerHTML = "NOPE! TRY AGAIN";
+
+
+                    console.log("NOPE");
+                    
+            }
+
+            //updates the counters
+            document.getElementById("guessesLeft").innerHTML = (lives);
+            document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount);
+
+
+        }
+
+        else if (lives <=0) {
+
+            document.getElementById("hint").innerHTML = ("You Lose!");
+            event.stopPropagation();
+
+        }
+
+        else if (moviesList[4].lettercount <= 0) {
+
+            document.getElementById("hint").innerHTML = ("You Win!");
+            return wins++
+            document.getElementById("winsCounter").innerhtml = wins;
+            event.stopPropagation();
+
+
+        }
+
+        else {
+
+            event.stopPropagation();
+
+        }
+
+        
+    }
+
+} 
+
+/********************************TO DO LIST **************************************** */
 
 
 // Code to compare every letter in the arrays of letters for the correct entry
@@ -81,112 +231,6 @@ console.log(userText);
 
 
 //Code to restart the game if player wins or loses
-
-/*********************************
- * 
- * FUNCTIONS
- * 
- ********************************/
-function removeElement(id) {
-    var elem = document.getElementById(id);
-    return elem.parentNode.removeChild(elem);
-}
-
-document.onload = function (event) {
-    console.log("test");
-    //document.getElementById("winsCounter").style.block = wins;
-    
-}
-
-
-
-//**************Alphabet checker****************
-document.onkeypress = function (event) {
-    
-    var alphabet = event.key;
-    userText.textContent = alphabet;
-
-        for (i = 0; i < moviesList[0].letters.length; i++) {
-            if ((alphabet === (moviesList[4].letters[i])))  {
-                console.log("LETTER MATCH");
-                document.getElementById("letterCountdown").innerHTML = moviesList[4].lettercount;
-                moviesList[4].lettercount--;
-                
-
-            } 
-            
-            else if ((alphabet !== (moviesList[4].letters[i]))) {
-                console.log("NOPE");
-                document.getElementById("guessesLeft").innerHTML = lives;
-                lives--;
-                
-            
-            }
-
-            else {
-                alert("Not sure what you typed. Try again!");
-            }
-            
-
-        }
-
-}
-
-//**************Avatar Keystroke Checker********
-document.onkeyup = function (event) {
-
-    var avatarLetters = event.key;
-    userText.textContent = avatarLetters;
-
-    switch (avatarLetters) {
-        case "a":
-            document.getElementById("firstLetter").innerHTML = "A";
-            document.getElementById("firstLetter").style.fontSize = "60px";
-
-
-            document.getElementById("thirdLetter").innerHTML = "A";
-            document.getElementById("thirdLetter").style.fontSize = "60px";
-
-
-            document.getElementById("fifthLetter").innerHTML = "A";
-            document.getElementById("fifthLetter").style.fontSize = "60px";
-            document.getElementById("hint").innerHTML = "NICE ONE!";
-            /*var div = document.createElement("div");
-            div.style.width = "100px";
-            div.style.height = "100px";
-            div.style.background = "red";
-            div.style.color = "white";
-            div.innerHTML = "Hello";
-            document.getElementById("").appendChild(div);*/
-            break;
-
-        case "v":
-            document.getElementById("secondLetter").innerHTML = "V";
-            document.getElementById("secondLetter").style.fontSize = "60px";
-            document.getElementById("hint").innerHTML = "YOU GOT ANOTHER!";
-            break;
-
-        case "t":
-            document.getElementById("fourthLetter").innerHTML = "T";
-            document.getElementById("fourthLetter").style.fontSize = "60px";
-            document.getElementById("hint").innerHTML = "GOOD JOB!";
-            break;
-
-        case "r":
-            document.getElementById("sixthLetter").innerHTML = "R";
-            document.getElementById("sixthLetter").style.fontSize = "60px";
-            document.getElementById("hint").innerHTML = "NAILED IT!";
-            break;
-
-        default:
-            document.getElementById("hint").innerHTML = "NOPE! TRY AGAIN";
-    }
-
-
-};
-
-
-
 
 /*****************************************************************************
  * Notes for later - I can use the following code example to create new Divs that display data about my movies above in the columns.
@@ -229,3 +273,36 @@ document.onkeyup = function (event) {
     targetDiv.appendChild(newDiv);
 
     **********************************************************/
+
+
+    //**************Alphabet checker "if" method****************
+/*document.onkeypress = function (event) {
+
+    var alphabet = event.key;
+    userText.textContent = alphabet;
+
+    for (i = 0; i < moviesList[0].letters.length; i++) {
+        if ((alphabet === (moviesList[4].letters[i]) && (document.getElementById("firstLetter") !== "A"))) {
+            console.log("LETTER MATCH");
+            document.getElementById("letterCountdown").innerHTML = moviesList[4].lettercount;
+            moviesList[4].lettercount--;
+
+
+        }
+
+        else if ((alphabet !== (moviesList[4].letters[i]))) {
+            console.log("NOPE");
+            document.getElementById("guessesLeft").innerHTML = lives;
+            lives--;
+
+
+        }
+
+        else {
+            alert("Not sure what you typed. Try again!");
+        }
+
+
+    }
+
+} */
