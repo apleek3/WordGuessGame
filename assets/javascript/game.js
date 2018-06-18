@@ -93,28 +93,58 @@ document.onkeypress = function (event) {
         //local variable and function to kickstart the letter checker
         var test = ["a","r","r","i","v","a","l"];
         var alphabet = event.key;
+        console.log(alphabet);
+
+
         function checkLetters (letter) {
-            return letter === moviesList[0].letters
-        
-           
+            
+            return letter === alphabet.toLowerCase();
         }
+           
+       // }
         //for (i = 0; i < moviesList[4].letters.length; i++) {}
-            if (alphabet = true) {
+       //  {
+       // if (test.some(checkLetters)= true ) {
+        
+           //var arrayElement = (test[i]);
+           //if (arrayElement === alphabet.toLowerCase()) {
+            if (test.some(checkLetters) == true) {
+                
+                //console.log(test[i]);
                 console.log("GOOD LETTER");
 
 
-            }
+            } 
 
-
-
+            
+            
             else {
+                
                 console.log("BAD LETTER");
             }
-
-
         }
+          //  if (condition) {
+             //   block of code to be executed if the condition is true
+           // } else { 
+           //     block of code to be executed if the condition is false
+           // }
     
+
+
+    
+
      
+   /* for(var i in myArray) {
+        var arrayElement = myArray[i];
+        if (arrayElement == formInput) {
+             //Do your stuff
+        }
+    } */
+
+
+
+
+
 
 /*
 var array = [1, 2, 3, 4, 5];
