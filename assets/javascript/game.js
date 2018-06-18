@@ -33,7 +33,7 @@ let moviesList = [
 
     },
 
-    {//Third object: movie "Airplane"
+    {//Fourth object: movie "Argo"
         name: "Argo",
         date: 2012,
         starring: ["Ben Affleck", "Bryan Cranston", "Alan Arkin"],
@@ -42,7 +42,7 @@ let moviesList = [
 
     },
 
-    {//Third object: movie "Airplane"
+    {//Fifth object: movie "Avatar"
         name: "Avatar",
         date: 2009,
         starring: ["Sam Worthington", "Sigourney Weaver", "Zoe Saldana"],
@@ -74,118 +74,85 @@ function removeElement(id) {
     return elem.parentNode.removeChild(elem);
 }
 
+
 document.getElementById("body").onload = function (event) {
     console.log("Onload functioning");
-    console.log(moviesList[0].letters)
+    console.log(moviesList[0].letters);
+    console.log(moviesList[1].letters);
+    console.log(moviesList[2].letters);
+    console.log(moviesList[3].letters);
+    console.log(moviesList[4].letters);
     //document.getElementById("winsCounter").style.block = wins;
 
 }
+
+
 
 //Begins displaying the global counters
 document.getElementById("guessesLeft").innerHTML = (lives);
 document.getElementById("winsCounter").innerHTML = (wins);
 
 
-//**************Alphabet checker "if" method****************
-
-document.onkeypress = function (event) {
-
-        //local variable and function to kickstart the letter checker
-        var test = ["a","r","r","i","v","a","l"];
-        var alphabet = event.key;
-        console.log(alphabet);
-
-
-        function checkLetters (letter) {
-            
-            return letter === alphabet.toLowerCase();
-        }
-           
-       // }
-        //for (i = 0; i < moviesList[4].letters.length; i++) {}
-       //  {
-       // if (test.some(checkLetters)= true ) {
-        
-           //var arrayElement = (test[i]);
-           //if (arrayElement === alphabet.toLowerCase()) {
-            if (test.some(checkLetters) == true) {
-                
-                //console.log(test[i]);
-                console.log("GOOD LETTER");
-
-
-            } 
-
-            
-            
-            else {
-                
-                console.log("BAD LETTER");
-            }
-        }
-          //  if (condition) {
-             //   block of code to be executed if the condition is true
-           // } else { 
-           //     block of code to be executed if the condition is false
-           // }
-    
-
-
-    
-
-     
-   /* for(var i in myArray) {
-        var arrayElement = myArray[i];
-        if (arrayElement == formInput) {
-             //Do your stuff
-        }
-    } */
-
-
-
-
-
-
-/*
-var array = [1, 2, 3, 4, 5];
-
-var even = function(element) {
-  // checks whether an element is even
-  return element % 2 === 0;
-};
-
-console.log(array.some(even));
-// expected output: true
-*/
-
-
 
 
 //**************Avatar Keystroke Checker********
 document.getElementById("firstButton").onclick = function (event) {
-
+    console.log("firstButton test");
+    
+    //Resets the number of lives when the button is clicked again.
+    let lives = 12;
+    document.getElementById("guessesLeft").innerHTML = (lives);
     
 
-    console.log("firstButton test");
     document.onkeypress = function (event) {
 
         document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount);;
 
+            
+        
+        
+            //variables to make the check letter function work
+            var userLetters = event.key;
+            userText.textContent = userLetters;
+
+        function checkLetters (letter) {
+            return letter === userLetters.toLowerCase();
+        }
 
         //sets the conditions for running this code as long as number of lives is greater than 0)
-        if ((lives > 0) && (moviesList[4].lettercount > 0)) {
-            var avatarLetters = event.key;
-            userText.textContent = avatarLetters;
+        if ((lives > 0) && (moviesList[4].lettercount > 0 && (moviesList[4].letters.some(checkLetters) == true))) {
+            
 
 
             //Begins displaying the counters
             document.getElementById("guessesLeft").innerHTML = (lives);
             document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount);;
 
-            //checs the letters against the users input and displays them in the proper boxes
-            switch (avatarLetters.toLowerCase()) {
+
+            //****************************Letter Check / Logs the previous letters***************** */
+            
+            //function checkLetters (letter) {
+                    //return letter === userLetters.toLowerCase();
+            //}
+                          
+                //if (moviesList[4].letters.some(checkLetters) == true) {
+                        
+                   // console.log("GOOD LETTER");
+            
+            
+                //} 
+                //else {
+                    
+                    //console.log("BAD LETTER");
+                    //event.stopPropagation();
+               // }
+            
+
+            //checks the letters against the users input and displays them in the proper boxes
+            switch (userLetters.toLowerCase()) {
                 case "a":
-                    document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount -= 3);
+                    moviesList[4].lettercount-=3;
+                    document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount);
                     document.getElementById("hint").innerHTML = "NICE ONE!";
 
 
@@ -207,7 +174,8 @@ document.getElementById("firstButton").onclick = function (event) {
                     break;
 
                 case "v":
-                    document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount--);
+                    moviesList[4].lettercount--;
+                    document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount);
                     document.getElementById("hint").innerHTML = "YOU GOT ANOTHER!";
 
                     document.getElementById("secondLetter").innerHTML = "V";
@@ -220,7 +188,8 @@ document.getElementById("firstButton").onclick = function (event) {
                     break;
 
                 case "t":
-                    document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount -= 1);
+                    moviesList[4].lettercount--;
+                    document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount);
                     document.getElementById("hint").innerHTML = "GOOD JOB!";
 
 
@@ -233,7 +202,8 @@ document.getElementById("firstButton").onclick = function (event) {
                     break;
 
                 case "r":
-                    document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount--);
+                    moviesList[4].lettercount--;
+                    document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount);
                     document.getElementById("hint").innerHTML = "NAILED IT!";
 
                     document.getElementById("sixthLetter").innerHTML = "R";
@@ -245,11 +215,11 @@ document.getElementById("firstButton").onclick = function (event) {
                     break;
 
                 default:
-                    document.getElementById("guessesLeft").innerHTML = (lives--);
-                    document.getElementById("hint").innerHTML = "NOPE! TRY AGAIN";
+                    
+                    document.getElementById("hint").innerHTML = "NOT SURE WHAT JUST HAPPENED. TRY AGAIN.";
 
 
-                    console.log("NOPE");
+                    console.log("NOT SURE WHAT JUST HAPPENED. TRY AGAIN!");
 
             }
 
@@ -277,7 +247,10 @@ document.getElementById("firstButton").onclick = function (event) {
         }
 
         else {
-
+            lives--;
+            document.getElementById("guessesLeft").innerHTML = (lives);
+            document.getElementById("hint").innerHTML = "NOPE! TRY AGAIN";
+            console.log("BAD LETTER");                       
             event.stopPropagation();
 
         }
@@ -372,5 +345,116 @@ document.getElementById("resetButton").onclick = function (event) {
     targetDiv.appendChild(newDiv);
 
     **********************************************************/
+
+
+//**************Alphabet checker "if" method****************
+
+
+
+
+/*
+
+document.onkeypress = function (event) {
+
+    var test = ["a","r","r","i","v","a","l"];
+    var alphabet = event.key;
+    console.log(alphabet);
+
+    function checkLetters (letter) {
+        
+        return letter === alphabet.toLowerCase();
+    }
+
+    if (test.some(checkLetters) == true) {
+            
+        //console.log(test[i]);
+        console.log("GOOD LETTER");
+
+
+    } 
+    else {
+            
+        console.log("BAD LETTER");
+    }
+}
+
+
+*/
+
+/************************************************* */
+/************************************************* */
+/*****************NOTES******************************** */
+/************************************************* */
+/************************************************* */
+/*
+document.onkeypress = function (event) {
+
+    //local variable and function to kickstart the letter checker
+    var test = ["a","r","r","i","v","a","l"];
+    var alphabet = event.key;
+    console.log(alphabet);
+
+
+    function checkLetters (letter) {
+        
+        return letter === alphabet.toLowerCase();
+    }
+       
+   // }
+    //for (i = 0; i < moviesList[4].letters.length; i++) {}
+   //  {
+   // if (test.some(checkLetters)= true ) {
+    
+       //var arrayElement = (test[i]);
+       //if (arrayElement === alphabet.toLowerCase()) {
+        if (test.some(checkLetters) == true) {
+            
+            //console.log(test[i]);
+            console.log("GOOD LETTER");
+
+
+        } 
+
+        
+        
+        else {
+            
+            console.log("BAD LETTER");
+        }
+    }
+      //  if (condition) {
+         //   block of code to be executed if the condition is true
+       // } else { 
+       //     block of code to be executed if the condition is false
+       // }
+
+
+/*
+
+
+ 
+/* for(var i in myArray) {
+    var arrayElement = myArray[i];
+    if (arrayElement == formInput) {
+         //Do your stuff
+    }
+} */
+
+
+
+
+
+
+/*
+var array = [1, 2, 3, 4, 5];
+
+var even = function(element) {
+// checks whether an element is even
+return element % 2 === 0;
+};
+
+console.log(array.some(even));
+// expected output: true
+*/
 
 
