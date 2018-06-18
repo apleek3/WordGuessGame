@@ -54,6 +54,7 @@ let moviesList = [
 
 ];
 
+
 let wins = 0;
 let lives = 12;
 var userText = document.getElementById("guess");
@@ -73,8 +74,9 @@ function removeElement(id) {
     return elem.parentNode.removeChild(elem);
 }
 
-document.onload = function (event) {
-    console.log("test");
+document.getElementById("body").onload = function (event) {
+    console.log("Onload functioning");
+    console.log(moviesList[0].letters)
     //document.getElementById("winsCounter").style.block = wins;
 
 }
@@ -84,14 +86,58 @@ document.getElementById("guessesLeft").innerHTML = (lives);
 document.getElementById("winsCounter").innerHTML = (wins);
 
 
+//**************Alphabet checker "if" method****************
+
+document.onkeypress = function (event) {
+
+        //local variable and function to kickstart the letter checker
+        var test = ["a","r","r","i","v","a","l"];
+        var alphabet = event.key;
+        function checkLetters (letter) {
+            return letter === moviesList[0].letters
+        
+           
+        }
+        //for (i = 0; i < moviesList[4].letters.length; i++) {}
+            if (alphabet = true) {
+                console.log("GOOD LETTER");
+
+
+            }
+
+
+
+            else {
+                console.log("BAD LETTER");
+            }
+
+
+        }
+    
+     
+
+/*
+var array = [1, 2, 3, 4, 5];
+
+var even = function(element) {
+  // checks whether an element is even
+  return element % 2 === 0;
+};
+
+console.log(array.some(even));
+// expected output: true
+*/
+
+
+
 
 //**************Avatar Keystroke Checker********
 document.getElementById("firstButton").onclick = function (event) {
 
-
+    
 
     console.log("firstButton test");
-    document.onkeyup = function (event) {
+    document.onkeypress = function (event) {
 
         document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount);;
 
@@ -100,7 +146,7 @@ document.getElementById("firstButton").onclick = function (event) {
         if ((lives > 0) && (moviesList[4].lettercount > 0)) {
             var avatarLetters = event.key;
             userText.textContent = avatarLetters;
-           
+
 
             //Begins displaying the counters
             document.getElementById("guessesLeft").innerHTML = (lives);
@@ -111,8 +157,8 @@ document.getElementById("firstButton").onclick = function (event) {
                 case "a":
                     document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount -= 3);
                     document.getElementById("hint").innerHTML = "NICE ONE!";
-                    
-                    
+
+
                     document.getElementById("firstLetter").innerHTML = "A";
                     document.getElementById("firstLetter").style.fontSize = "60px";
 
@@ -133,10 +179,10 @@ document.getElementById("firstButton").onclick = function (event) {
                 case "v":
                     document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount--);
                     document.getElementById("hint").innerHTML = "YOU GOT ANOTHER!";
-                    
+
                     document.getElementById("secondLetter").innerHTML = "V";
                     document.getElementById("secondLetter").style.fontSize = "60px";
-                    
+
 
                     console.log("LETTER MATCH");
 
@@ -146,11 +192,11 @@ document.getElementById("firstButton").onclick = function (event) {
                 case "t":
                     document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount -= 1);
                     document.getElementById("hint").innerHTML = "GOOD JOB!";
-                
-                
+
+
                     document.getElementById("fourthLetter").innerHTML = "T";
                     document.getElementById("fourthLetter").style.fontSize = "60px";
-                                  
+
 
                     console.log("LETTER MATCH");
 
@@ -159,22 +205,22 @@ document.getElementById("firstButton").onclick = function (event) {
                 case "r":
                     document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount--);
                     document.getElementById("hint").innerHTML = "NAILED IT!";
-                
+
                     document.getElementById("sixthLetter").innerHTML = "R";
                     document.getElementById("sixthLetter").style.fontSize = "60px";
-                       
+
 
                     console.log("LETTER MATCH");
 
                     break;
 
                 default:
-                    document.getElementById("guessesLeft").innerHTML = (lives--);              
+                    document.getElementById("guessesLeft").innerHTML = (lives--);
                     document.getElementById("hint").innerHTML = "NOPE! TRY AGAIN";
 
 
                     console.log("NOPE");
-                    
+
             }
 
             //updates the counters
@@ -184,7 +230,7 @@ document.getElementById("firstButton").onclick = function (event) {
 
         }
 
-        else if (lives <=0) {
+        else if (lives <= 0) {
 
             document.getElementById("hint").innerHTML = ("You Lose!");
             event.stopPropagation();
@@ -194,8 +240,7 @@ document.getElementById("firstButton").onclick = function (event) {
         else if (moviesList[4].lettercount <= 0) {
 
             document.getElementById("hint").innerHTML = ("You Win!");
-            return wins++
-            document.getElementById("winsCounter").innerhtml = wins;
+            document.getElementById("winsCounter").innerhtml = wins++;
             event.stopPropagation();
 
 
@@ -207,13 +252,37 @@ document.getElementById("firstButton").onclick = function (event) {
 
         }
 
-        
+
     }
 
-} 
+}
 
 /********************************TO DO LIST **************************************** */
 
+//**************RESET BUTTON********************
+/*
+document.getElementById("resetButton").onclick = function (event) {
+    document.getElementById("guessesLeft").innerHTML = (lives);
+    document.getElementById("winsCounter").innerHTML = (wins);
+    document.getElementById("letterCountdown").innerHTML = 0;
+    document.getElementById("firstLetter").innerHTML = " ";
+    document.getElementById("secondLetter").innerHTML = " ";
+    document.getElementById("thirdLetter").innerHTML = " ";
+    document.getElementById("fourthLetter").innerHTML = " ";
+    document.getElementById("fifthLetter").innerHTML = " ";
+    document.getElementById("sixthLetter").innerHTML = " ";
+    document.getElementById("seventhLetter").innerHTML = " ";
+    document.getElementById("eighthLetter").innerHTML = " ";
+    document.getElementById("ninthLetter").innerHTML = " ";
+    document.getElementById("tenthLetter").innerHTML = " ";
+    document.getElementById("eleventhLetter").innerHTML = " ";
+    document.getElementById("twelfthLetter").innerHTML = " ";
+    document.getElementById("answer").innerHTML = "Answer:";
+    document.getElementById("hint").innerHTML = "Click one the buttons above to Play!"
+    console.log("Reset Button working");
+
+}
+*/
 
 // Code to compare every letter in the arrays of letters for the correct entry
 // also
@@ -275,34 +344,3 @@ document.getElementById("firstButton").onclick = function (event) {
     **********************************************************/
 
 
-    //**************Alphabet checker "if" method****************
-/*document.onkeypress = function (event) {
-
-    var alphabet = event.key;
-    userText.textContent = alphabet;
-
-    for (i = 0; i < moviesList[0].letters.length; i++) {
-        if ((alphabet === (moviesList[4].letters[i]) && (document.getElementById("firstLetter") !== "A"))) {
-            console.log("LETTER MATCH");
-            document.getElementById("letterCountdown").innerHTML = moviesList[4].lettercount;
-            moviesList[4].lettercount--;
-
-
-        }
-
-        else if ((alphabet !== (moviesList[4].letters[i]))) {
-            console.log("NOPE");
-            document.getElementById("guessesLeft").innerHTML = lives;
-            lives--;
-
-
-        }
-
-        else {
-            alert("Not sure what you typed. Try again!");
-        }
-
-
-    }
-
-} */
