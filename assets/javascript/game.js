@@ -79,6 +79,7 @@ function removeElement(id) {
 }
 
 
+
 //Begins displaying the global counters
 document.getElementById("guessesLeft").innerHTML = (lives);
 document.getElementById("winsCounter").innerHTML = (wins);
@@ -86,7 +87,6 @@ document.getElementById("winsCounter").innerHTML = (wins);
 
 //**************HANGMAN: "AVATAR" CODE **********************
 document.getElementById("firstButton").onclick = function (event) {
-    console.log("firstButton test");
 
     //Resets the number of lives and letter storage arrays when the button is clicked again.
     var lives = 8;
@@ -241,6 +241,8 @@ document.getElementById("firstButton").onclick = function (event) {
             document.getElementById("hint").innerHTML = ("You Win!");
             document.getElementById("winsCounter").innerhtml = wins;
             document.getElementById("guess").innerHTML = (avatarStorage);
+            document.getElementById("movieContainer").style.display = 'block'; 
+           
 
         }
 
@@ -267,7 +269,6 @@ document.getElementById("firstButton").onclick = function (event) {
 
 //**************HANGMAN: "AVATAR" CODE **********************
 document.getElementById("firstButton").onclick = function (event) {
-    console.log("firstButton test");
 
     //Resets the number of lives and letter storage arrays when the button is clicked again.
     var lives = 8;
@@ -430,11 +431,12 @@ document.getElementById("firstButton").onclick = function (event) {
             wins++;
             document.getElementById("guess").innerHTML = (avatarStorage);
             document.getElementById("hint").innerHTML = ("You Win!");
-
-
             document.getElementById("winsCounter").innerhtml = wins;
             document.getElementById("guess").innerHTML = (avatarStorage);
-
+            function moviePoster() {
+                var src = "http://google.com/images/logo.gif";
+                show_image("http://google.com/images/logo.gif", 276,110, "Google Logo");
+            }
 
         }
 
@@ -467,7 +469,6 @@ document.getElementById("firstButton").onclick = function (event) {
 //**************HANGMAN: "Argo" CODE **********************
 //**************HANGMAN: "Argo" CODE **********************
 document.getElementById("secondButton").onclick = function (event) {
-    console.log("secondButton test");
 
     //Resets the number of lives and letter storage arrays when the button is clicked again.
     var lives = 8;
@@ -661,7 +662,6 @@ document.getElementById("secondButton").onclick = function (event) {
 //**************HANGMAN: "Airplane" CODE **********************
 //**************HANGMAN: "Airplane" CODE **********************
 document.getElementById("thirdButton").onclick = function (event) {
-    console.log("thirdButton test");
 
     //Resets the number of lives and letter storage arrays when the button is clicked again.
     var lives = 8;
@@ -1088,7 +1088,7 @@ document.getElementById("fifthButton").onclick = function (event) {
 
     //"resets" the appearance of the counters and displays the word's hint
     document.getElementById("guessesLeft").innerHTML = (lives);
-    document.getElementById("hint").innerHTML = (" 'The day they _______' with Amy Adams and Jeremy Renner.");
+    document.getElementById("hint").innerHTML = (" Aliens, Time Language, with Amy Adams and Jeremy Renner.");
 
     //"resets" every letter block
     document.getElementById("firstLetter").innerHTML = ("");
@@ -1149,7 +1149,7 @@ document.getElementById("fifthButton").onclick = function (event) {
             //checks the letters against the users input and displays them in the proper boxes
             switch (userLetters.toLowerCase()) {
                 case "a":
-                    moviesList[0].lettercount--;
+                    moviesList[0].lettercount -=2 ;
                     document.getElementById("letterCountdown").innerHTML = (moviesList[0].lettercount);
                     document.getElementById("hint").innerHTML = "NICE ONE!";
                     document.getElementById("firstLetter").innerHTML = "A";
@@ -1217,7 +1217,7 @@ document.getElementById("fifthButton").onclick = function (event) {
             lives--;
             document.getElementById("guessesLeft").innerHTML = (lives);
             arrivalStorage.push(userLetters); // pushes any OTHER LETTERS TO STORAGE
-            document.getElementById("hint").innerHTML = ("YOU ALREADY CHOSE THAT LETTER. TRY AGAIN");
+            document.getElementById("hint").innerHTML = ("NOPE. TRY AGAIN!");
             document.getElementById("guess").innerHTML = (arrivalStorage);
 
         }
@@ -1241,7 +1241,7 @@ document.getElementById("fifthButton").onclick = function (event) {
         else if (arrivalStorage.some(checkLetters) == true) { //notes if someone pressed the key already
             console.log("REPEAT GUESS");
             console.log(arrivalStorage);
-            document.getElementById("hint").innerHTML = ("YOU ALREADY CHOSE THAT LETTER. TRY AGAIN");
+            document.getElementById("hint").innerHTML = ("NOPE. TRY AGAIN!");
             document.getElementById("guess").innerHTML = (arrivalStorage);
 
         }
