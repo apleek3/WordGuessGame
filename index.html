@@ -101,7 +101,7 @@
                     <h1>Hangman!</h1>
                     <p>All of the following words are Grade "A" Movie Titles. Give it a whirl and guess the movies!</p>
                     
-                    <p>PRESS ANY BUTTON TO START!!! Press the button AGAIN to "reset".</p>
+                    <p>PRESS ANY BUTTON TO START!!! Press the button AGAIN to 'reset'.</p>
                     <br>
 
                         <button id="firstButton" type="button" class="btn btn-secondary">First Movie</button>
@@ -111,7 +111,10 @@
                         <button id="fifthButton" type="button" class="btn btn-secondary">Fifth Movie</button>
                         
 
-                    <p id="guess"></p>
+                    <div>
+                    <h1>YOUR LAST GUESSES:</h1>
+                    <h2 id="guess"></h2>
+                    </div>
 
                     <hr>
 
@@ -122,23 +125,23 @@
 
                     <div class="fluid-container text-center">
                         <div class="row">
-                            <div class="col-sm-1" id="firstLetter">1</div>
-                            <div class="col-sm-1" id="secondLetter">2</div>
-                            <div class="col-sm-1" id="thirdLetter">3</div>
-                            <div class="col-sm-1" id="fourthLetter">4</div>
-                            <div class="col-sm-1" id="fifthLetter">5</div>
-                            <div class="col-sm-1" id="sixthLetter">6</div>
-                            <div class="col-sm-1" id="seventhLetter">7</div>
-                            <div class="col-sm-1" id="eighthLetter">8</div>
-                            <div class="col-sm-1" id="ninthLetter">9</div>
-                            <div class="col-sm-1" id="tenthLetter">10</div>
-                            <div class="col-sm-1" id="eleventhLetter">11</div>
-                            <div class="col-sm-1" id="twelfthLetter">12</div>
+                            <div class="fluid-container col-sm-1" id="firstLetter"></div>
+                            <div class="fluid-container col-sm-1" id="secondLetter"></div>
+                            <div class="fluid-container col-sm-1" id="thirdLetter"></div>
+                            <div class="fluid-container col-sm-1" id="fourthLetter"></div>
+                            <div class="fluid-container col-sm-1" id="fifthLetter"></div>
+                            <div class="fluid-container col-sm-1" id="sixthLetter"></div>
+                            <div class="fluid-container col-sm-1" id="seventhLetter"></div>
+                            <div class="fluid-container col-sm-1" id="eighthLetter"></div>
+                            <div class="fluid-container col-sm-1" id="ninthLetter"></div>
+                            <div class="fluid-container col-sm-1" id="tenthLetter"></div>
+                            <div class="fluid-container col-sm-1" id="eleventhLetter"></div>
+                            <div class="fluid-container col-sm-1" id="twelfthLetter"></div>
                         </div>
                     </div>
 
 
-                    <h3 id="hint">"Hang on to your butts."</h3>
+                    <h3 id="hint">"Movies that begin with "A"."</h3>
 
 
                 </div>
@@ -156,7 +159,20 @@
                         <p id="letterCountdown"></p>
                     </div>
                 </div>
-            </div>
+        </div>
+
+        <div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+    
+        </div>
 
             <div class="sticky-bottom padding footer border">
                 <span>Copyright &copy;</span>
