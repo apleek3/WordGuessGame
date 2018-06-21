@@ -6,22 +6,22 @@
  ********************************/
 
 // Code to CREATE the movies as an array of Objects
-let moviesList = [
+var moviesList = [
 
     {//First object: movie "Arrival"
         name: "Arrival",
         date: 2016,
         starring: ["Amy Adams", "Jeremy Renner", "Forest Whitaker"],
         letters: ["a", "r", "r", "i", "v", "a", "l"],
-        lettercount: [6],
+        lettercount: [7],
     },
 
     {//Second object: movie "Aliens"
         name: "Aliens",
         date: 1986,
         starring: ["Sigourney Weaver", "Micahel Biehn", "Paul Reiser"],
-        letters: ["a", "l", "i", "e", "n"],
-        lettercount: [4],
+        letters: ["a", "l", "i", "e", "n", "s"],
+        lettercount: [6],
     },
 
     {//Third object: movie "Airplane"
@@ -51,23 +51,19 @@ let moviesList = [
 
     },
 
-
 ];
 
 //Global variables list
-let wins = 0;
-let lives = 8;
+var wins = 0;
+var lives = 8;
 var userText = document.getElementById("guess");
 
 // Storage Arrays for each word
 var avatarStorage = [];
-var argoStorage  = [];
+var argoStorage = [];
 var airplaneStorage = [];
 var aliensStorage = [];
 var arrivalStorage = [];
-
-
-
 
 
 /*********************************
@@ -82,44 +78,29 @@ function removeElement(id) {
     return elem.parentNode.removeChild(elem);
 }
 
-/*
-document.getElementById("body").onload = function (event) {
-    console.log("Onload functioning");
-    console.log(moviesList[0].letters);
-    console.log(moviesList[1].letters);
-    console.log(moviesList[2].letters);
-    console.log(moviesList[3].letters);
-    console.log(moviesList[4].letters);
-    //document.getElementById("winsCounter").style.block = wins;
-
-}
-*/
-
 
 //Begins displaying the global counters
 document.getElementById("guessesLeft").innerHTML = (lives);
 document.getElementById("winsCounter").innerHTML = (wins);
 
 
-
-
 //**************HANGMAN: "AVATAR" CODE **********************
 document.getElementById("firstButton").onclick = function (event) {
     console.log("firstButton test");
-    
+
     //Resets the number of lives and letter storage arrays when the button is clicked again.
-    let lives = 8;
+    var lives = 8;
     avatarStorage = [];
     document.getElementById("guess").innerHTML = (avatarStorage);
 
     moviesList[4].lettercount = 6;
     document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount);
-    
-   
+
+
     //"resets" the appearance of the counters and displays the word's hint
     document.getElementById("guessesLeft").innerHTML = (lives);
     document.getElementById("hint").innerHTML = ("James Cameron's greatest movie. His words.");
-   
+
     //"resets" every letter block
     document.getElementById("firstLetter").innerHTML = ("");
     document.getElementById("secondLetter").innerHTML = ("");
@@ -134,42 +115,37 @@ document.getElementById("firstButton").onclick = function (event) {
     document.getElementById("eleventhLetter").innerHTML = ("");
     document.getElementById("twelfthLetter").innerHTML = ("");
 
-    
+
     //begin code to check key presses and start matching word's countdown
     document.onkeypress = function (event) {
         document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount);
 
-            
-        
-        
-            //variables to make the check letter function work
-            var userLetters = event.key;
-            userText.textContent = userLetters;
 
-            //spotchecking
-            console.log(userLetters);
-            console.log(avatarStorage);
+        //variables to make the check letter function work
+        var userLetters = event.key;
+        userText.textContent = userLetters;
 
-            //function for checking users keystrokes against the object.arrays above
-            function checkLetters (letter) {
+        //spotchecking
+        console.log(userLetters);
+        console.log(avatarStorage);
+
+        //function for checking users keystrokes against the object.arrays above
+        function checkLetters(letter) {
             return letter === userLetters.toLowerCase();
-            }
-
-
+        }
 
 
         //sets the conditions for running this code as long as number of lives is greater than 0)
-        if      (
-                    (lives > 0) //checks to make sure user isn't out of lives
-                    && 
-                    (moviesList[4].lettercount > 0) // once the count reaches 0 the player has won
-                    && 
-                    (moviesList[4].letters.some(checkLetters) == true) // primary function to ensure letter is "correct"
-                    &&
-                    (avatarStorage.some(checkLetters) === false) //make sure letter hasn't been used before
-                ) 
-            {
-            
+        if (
+            (lives > 0) //checks to make sure user isn't out of lives
+            &&
+            (moviesList[4].lettercount > 0) // once the count reaches 0 the player has won
+            &&
+            (moviesList[4].letters.some(checkLetters) == true) // primary function to ensure letter is "correct"
+            &&
+            (avatarStorage.some(checkLetters) === false) //make sure letter hasn't been used before
+        ) {
+
             //code to push the letters to storage array
             avatarStorage.push(userLetters);
 
@@ -185,30 +161,18 @@ document.getElementById("firstButton").onclick = function (event) {
 
 
 
-            
-
             //checks the letters against the users input and displays them in the proper boxes
             switch (userLetters.toLowerCase()) {
                 case "a":
-                    moviesList[4].lettercount-=3;
+                    moviesList[4].lettercount -= 3;
                     document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount);
                     document.getElementById("hint").innerHTML = "NICE ONE!";
-
-
                     document.getElementById("firstLetter").innerHTML = "A";
                     document.getElementById("firstLetter").style.fontSize = "30px";
-
-
                     document.getElementById("thirdLetter").innerHTML = "A";
                     document.getElementById("thirdLetter").style.fontSize = "30px";
-
-
                     document.getElementById("fifthLetter").innerHTML = "A";
                     document.getElementById("fifthLetter").style.fontSize = "30px";
-
-
-                    console.log("LETTER MATCH");
-
 
                     break;
 
@@ -216,13 +180,8 @@ document.getElementById("firstButton").onclick = function (event) {
                     moviesList[4].lettercount--;
                     document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount);
                     document.getElementById("hint").innerHTML = "YOU GOT ANOTHER!";
-
                     document.getElementById("secondLetter").innerHTML = "V";
                     document.getElementById("secondLetter").style.fontSize = "30px";
-
-
-                    console.log("LETTER MATCH");
-
 
                     break;
 
@@ -230,13 +189,8 @@ document.getElementById("firstButton").onclick = function (event) {
                     moviesList[4].lettercount--;
                     document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount);
                     document.getElementById("hint").innerHTML = "GOOD JOB!";
-
-
                     document.getElementById("fourthLetter").innerHTML = "T";
                     document.getElementById("fourthLetter").style.fontSize = "30px";
-
-
-                    console.log("LETTER MATCH");
 
                     break;
 
@@ -244,21 +198,14 @@ document.getElementById("firstButton").onclick = function (event) {
                     moviesList[4].lettercount--;
                     document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount);
                     document.getElementById("hint").innerHTML = "NAILED IT!";
-
                     document.getElementById("sixthLetter").innerHTML = "R";
                     document.getElementById("sixthLetter").style.fontSize = "30px";
-
-
-                    console.log("LETTER MATCH");
 
                     break;
 
                 default:
-                    
+
                     document.getElementById("hint").innerHTML = "NOT SURE WHAT JUST HAPPENED. TRY AGAIN.";
-
-
-                    console.log("NOT SURE WHAT JUST HAPPENED. TRY AGAIN!");
 
             }
 
@@ -266,18 +213,17 @@ document.getElementById("firstButton").onclick = function (event) {
             document.getElementById("guessesLeft").innerHTML = (lives);
             document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount);
 
-
         }
 
         else if (
             (lives > 0) //checks to make sure user isn't out of lives
-                    && 
+            &&
             (moviesList[4].lettercount > 0) // once the count reaches 0 the player has won
         ) {
             lives--;
             document.getElementById("guessesLeft").innerHTML = (lives);
             avatarStorage.push(userLetters); // pushes any OTHER LETTERS TO STORAGE
-            document.getElementById("hint").innerHTML = ("YOU ALREADY CHOSE THAT LETTER. TRY AGAIN"); 
+            document.getElementById("hint").innerHTML = ("NOPE! Try again.");
             document.getElementById("guess").innerHTML = (avatarStorage);
 
         }
@@ -293,20 +239,14 @@ document.getElementById("firstButton").onclick = function (event) {
             wins++;
             document.getElementById("guess").innerHTML = (avatarStorage);
             document.getElementById("hint").innerHTML = ("You Win!");
-            console.log("Win Counter test");
-            console.log(wins);
             document.getElementById("winsCounter").innerhtml = wins;
             document.getElementById("guess").innerHTML = (avatarStorage);
-            
-            
-
 
         }
 
         else if (avatarStorage.some(checkLetters) == true) { //notes if someone pressed the key already
-            console.log("REPEAT GUESS");
-            console.log(avatarStorage);
-            document.getElementById("hint").innerHTML = ("YOU ALREADY CHOSE THAT LETTER. TRY AGAIN"); 
+
+            document.getElementById("hint").innerHTML = ("NOPE! Try again.");
             document.getElementById("guess").innerHTML = (avatarStorage);
 
         }
@@ -315,34 +255,33 @@ document.getElementById("firstButton").onclick = function (event) {
             lives--;
             document.getElementById("guessesLeft").innerHTML = (lives);
             document.getElementById("hint").innerHTML = "GAME OVER?? TEST";
-            console.log("BAD LETTER");                       
             event.stopPropagation();
 
         }
 
 
     }
-    
-document.getElementById("winsCounter").innerHTML = (wins);
+
+    document.getElementById("winsCounter").innerHTML = (wins);
 }
 
 //**************HANGMAN: "AVATAR" CODE **********************
 document.getElementById("firstButton").onclick = function (event) {
     console.log("firstButton test");
-    
+
     //Resets the number of lives and letter storage arrays when the button is clicked again.
-    let lives = 8;
+    var lives = 8;
     avatarStorage = [];
     document.getElementById("guess").innerHTML = (avatarStorage);
 
     moviesList[4].lettercount = 6;
     document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount);
-    
-   
+
+
     //"resets" the appearance of the counters and displays the word's hint
     document.getElementById("guessesLeft").innerHTML = (lives);
     document.getElementById("hint").innerHTML = ("James Cameron's greatest movie. His words.");
-   
+
     //"resets" every letter block
     document.getElementById("firstLetter").innerHTML = ("");
     document.getElementById("secondLetter").innerHTML = ("");
@@ -357,42 +296,37 @@ document.getElementById("firstButton").onclick = function (event) {
     document.getElementById("eleventhLetter").innerHTML = ("");
     document.getElementById("twelfthLetter").innerHTML = ("");
 
-    
+
     //begin code to check key presses and start matching word's countdown
     document.onkeypress = function (event) {
         document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount);
 
-            
-        
-        
-            //variables to make the check letter function work
-            var userLetters = event.key;
-            userText.textContent = userLetters;
 
-            //spotchecking
-            console.log(userLetters);
-            console.log(avatarStorage);
+        //variables to make the check letter function work
+        var userLetters = event.key;
+        userText.textContent = userLetters;
 
-            //function for checking users keystrokes against the object.arrays above
-            function checkLetters (letter) {
+        //spotchecking
+        console.log(userLetters);
+        console.log(avatarStorage);
+
+        //function for checking users keystrokes against the object.arrays above
+        function checkLetters(letter) {
             return letter === userLetters.toLowerCase();
-            }
-
-
+        }
 
 
         //sets the conditions for running this code as long as number of lives is greater than 0)
-        if      (
-                    (lives > 0) //checks to make sure user isn't out of lives
-                    && 
-                    (moviesList[4].lettercount > 0) // once the count reaches 0 the player has won
-                    && 
-                    (moviesList[4].letters.some(checkLetters) == true) // primary function to ensure letter is "correct"
-                    &&
-                    (avatarStorage.some(checkLetters) === false) //make sure letter hasn't been used before
-                ) 
-            {
-            
+        if (
+            (lives > 0) //checks to make sure user isn't out of lives
+            &&
+            (moviesList[4].lettercount > 0) // once the count reaches 0 the player has won
+            &&
+            (moviesList[4].letters.some(checkLetters) == true) // primary function to ensure letter is "correct"
+            &&
+            (avatarStorage.some(checkLetters) === false) //make sure letter hasn't been used before
+        ) {
+
             //code to push the letters to storage array
             avatarStorage.push(userLetters);
 
@@ -407,13 +341,10 @@ document.getElementById("firstButton").onclick = function (event) {
             document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount);;
 
 
-
-            
-
             //checks the letters against the users input and displays them in the proper boxes
             switch (userLetters.toLowerCase()) {
                 case "a":
-                    moviesList[4].lettercount-=3;
+                    moviesList[4].lettercount -= 3;
                     document.getElementById("letterCountdown").innerHTML = (moviesList[4].lettercount);
                     document.getElementById("hint").innerHTML = "NICE ONE!";
 
@@ -429,10 +360,6 @@ document.getElementById("firstButton").onclick = function (event) {
                     document.getElementById("fifthLetter").innerHTML = "A";
                     document.getElementById("fifthLetter").style.fontSize = "30px";
 
-
-                    console.log("LETTER MATCH");
-
-
                     break;
 
                 case "v":
@@ -442,10 +369,6 @@ document.getElementById("firstButton").onclick = function (event) {
 
                     document.getElementById("secondLetter").innerHTML = "V";
                     document.getElementById("secondLetter").style.fontSize = "30px";
-
-
-                    console.log("LETTER MATCH");
-
 
                     break;
 
@@ -458,9 +381,6 @@ document.getElementById("firstButton").onclick = function (event) {
                     document.getElementById("fourthLetter").innerHTML = "T";
                     document.getElementById("fourthLetter").style.fontSize = "30px";
 
-
-                    console.log("LETTER MATCH");
-
                     break;
 
                 case "r":
@@ -471,17 +391,11 @@ document.getElementById("firstButton").onclick = function (event) {
                     document.getElementById("sixthLetter").innerHTML = "R";
                     document.getElementById("sixthLetter").style.fontSize = "30px";
 
-
-                    console.log("LETTER MATCH");
-
                     break;
 
                 default:
-                    
+
                     document.getElementById("hint").innerHTML = "NOT SURE WHAT JUST HAPPENED. TRY AGAIN.";
-
-
-                    console.log("NOT SURE WHAT JUST HAPPENED. TRY AGAIN!");
 
             }
 
@@ -494,13 +408,13 @@ document.getElementById("firstButton").onclick = function (event) {
 
         else if (
             (lives > 0) //checks to make sure user isn't out of lives
-                    && 
+            &&
             (moviesList[4].lettercount > 0) // once the count reaches 0 the player has won
         ) {
             lives--;
             document.getElementById("guessesLeft").innerHTML = (lives);
             avatarStorage.push(userLetters); // pushes any OTHER LETTERS TO STORAGE
-            document.getElementById("hint").innerHTML = ("YOU ALREADY CHOSE THAT LETTER. TRY AGAIN"); 
+            document.getElementById("hint").innerHTML = ("NOPE! Try again.");
             document.getElementById("guess").innerHTML = (avatarStorage);
 
         }
@@ -516,11 +430,10 @@ document.getElementById("firstButton").onclick = function (event) {
             wins++;
             document.getElementById("guess").innerHTML = (avatarStorage);
             document.getElementById("hint").innerHTML = ("You Win!");
-            console.log("Win Counter test");
-            console.log(wins);
+
+
             document.getElementById("winsCounter").innerhtml = wins;
             document.getElementById("guess").innerHTML = (avatarStorage);
-            
 
 
         }
@@ -528,7 +441,7 @@ document.getElementById("firstButton").onclick = function (event) {
         else if (avatarStorage.some(checkLetters) == true) { //notes if someone pressed the key already
             console.log("REPEAT GUESS");
             console.log(avatarStorage);
-            document.getElementById("hint").innerHTML = ("YOU ALREADY CHOSE THAT LETTER. TRY AGAIN"); 
+            document.getElementById("hint").innerHTML = ("NOPE! Try again.");
             document.getElementById("guess").innerHTML = (avatarStorage);
 
         }
@@ -537,34 +450,38 @@ document.getElementById("firstButton").onclick = function (event) {
             lives--;
             document.getElementById("guessesLeft").innerHTML = (lives);
             document.getElementById("hint").innerHTML = "GAME OVER?? TEST";
-            console.log("BAD LETTER");                       
+            console.log("BAD LETTER");
             event.stopPropagation();
 
         }
 
 
     }
-    
-document.getElementById("winsCounter").innerHTML = (wins);
+
+    document.getElementById("winsCounter").innerHTML = (wins);
 }
 
 //**************HANGMAN: "Argo" CODE **********************
+//**************HANGMAN: "Argo" CODE **********************
+//**************HANGMAN: "Argo" CODE **********************
+//**************HANGMAN: "Argo" CODE **********************
+//**************HANGMAN: "Argo" CODE **********************
 document.getElementById("secondButton").onclick = function (event) {
     console.log("secondButton test");
-    
+
     //Resets the number of lives and letter storage arrays when the button is clicked again.
-    let lives = 8;
+    var lives = 8;
     argoStorage = [];
     document.getElementById("guess").innerHTML = (argoStorage);
 
     moviesList[3].lettercount = 4;
     document.getElementById("letterCountdown").innerHTML = (moviesList[3].lettercount);
-    
-   
+
+
     //"resets" the appearance of the counters and displays the word's hint
     document.getElementById("guessesLeft").innerHTML = (lives);
     document.getElementById("hint").innerHTML = ("The one where Ben Affleck is NOT in BOSTON.");
-   
+
     //"resets" every letter block
     document.getElementById("firstLetter").innerHTML = ("");
     document.getElementById("secondLetter").innerHTML = ("");
@@ -579,42 +496,38 @@ document.getElementById("secondButton").onclick = function (event) {
     document.getElementById("eleventhLetter").innerHTML = ("");
     document.getElementById("twelfthLetter").innerHTML = ("");
 
-    
+
     //begin code to check key presses and start matching word's countdown
     document.onkeypress = function (event) {
         document.getElementById("letterCountdown").innerHTML = (moviesList[3].lettercount);
 
-            
-        
-        
-            //variables to make the check letter function work
-            var userLetters = event.key;
-            userText.textContent = userLetters;
 
-            //spotchecking
-            console.log(userLetters);
-            console.log(argoStorage);
 
-            //function for checking users keystrokes against the object.arrays above
-            function checkLetters (letter) {
+
+        //variables to make the check letter function work
+        var userLetters = event.key;
+        userText.textContent = userLetters;
+
+        //spotchecking
+        console.log(userLetters);
+        console.log(argoStorage);
+
+        //function for checking users keystrokes against the object.arrays above
+        function checkLetters(letter) {
             return letter === userLetters.toLowerCase();
-            }
-
-
-
+        }
 
         //sets the conditions for running this code as long as number of lives is greater than 0)
-        if      (
-                    (lives > 0) //checks to make sure user isn't out of lives
-                    && 
-                    (moviesList[3].lettercount > 0) // once the count reaches 0 the player has won
-                    && 
-                    (moviesList[3].letters.some(checkLetters) == true) // primary function to ensure letter is "correct"
-                    &&
-                    (argoStorage.some(checkLetters) === false) //make sure letter hasn't been used before
-                ) 
-            {
-            
+        if (
+            (lives > 0) //checks to make sure user isn't out of lives
+            &&
+            (moviesList[3].lettercount > 0) // once the count reaches 0 the player has won
+            &&
+            (moviesList[3].letters.some(checkLetters) == true) // primary function to ensure letter is "correct"
+            &&
+            (argoStorage.some(checkLetters) === false) //make sure letter hasn't been used before
+        ) {
+
             //code to push the letters to storage array
             argoStorage.push(userLetters);
 
@@ -629,9 +542,6 @@ document.getElementById("secondButton").onclick = function (event) {
             document.getElementById("letterCountdown").innerHTML = (moviesList[3].lettercount);;
 
 
-
-            
-
             //checks the letters against the users input and displays them in the proper boxes
             switch (userLetters.toLowerCase()) {
                 case "a":
@@ -643,11 +553,6 @@ document.getElementById("secondButton").onclick = function (event) {
                     document.getElementById("firstLetter").innerHTML = "A";
                     document.getElementById("firstLetter").style.fontSize = "30px";
 
-
-
-                    console.log("LETTER MATCH");
-
-
                     break;
 
                 case "r":
@@ -657,10 +562,6 @@ document.getElementById("secondButton").onclick = function (event) {
 
                     document.getElementById("secondLetter").innerHTML = "R";
                     document.getElementById("secondLetter").style.fontSize = "30px";
-
-
-                    console.log("LETTER MATCH");
-
 
                     break;
 
@@ -673,9 +574,6 @@ document.getElementById("secondButton").onclick = function (event) {
                     document.getElementById("thirdLetter").innerHTML = "G";
                     document.getElementById("thirdLetter").style.fontSize = "30px";
 
-
-                    console.log("LETTER MATCH");
-
                     break;
 
                 case "o":
@@ -686,13 +584,10 @@ document.getElementById("secondButton").onclick = function (event) {
                     document.getElementById("fourthLetter").innerHTML = "O";
                     document.getElementById("fourthLetter").style.fontSize = "30px";
 
-
-                    console.log("LETTER MATCH");
-
                     break;
 
                 default:
-                    
+
                     document.getElementById("hint").innerHTML = "NOT SURE WHAT JUST HAPPENED. TRY AGAIN.";
 
 
@@ -709,13 +604,13 @@ document.getElementById("secondButton").onclick = function (event) {
 
         else if (
             (lives > 0) //checks to make sure user isn't out of lives
-                    && 
+            &&
             (moviesList[3].lettercount > 0) // once the count reaches 0 the player has won
         ) {
             lives--;
             document.getElementById("guessesLeft").innerHTML = (lives);
             argoStorage.push(userLetters); // pushes any OTHER LETTERS TO STORAGE
-            document.getElementById("hint").innerHTML = ("YOU ALREADY CHOSE THAT LETTER. TRY AGAIN"); 
+            document.getElementById("hint").innerHTML = ("NOPE! Try again.");
             document.getElementById("guess").innerHTML = (argoStorage);
 
         }
@@ -731,19 +626,15 @@ document.getElementById("secondButton").onclick = function (event) {
             wins++;
             document.getElementById("guess").innerHTML = (argoStorage);
             document.getElementById("hint").innerHTML = ("You Win!");
-            console.log("Win Counter test");
-            console.log(wins);
             document.getElementById("winsCounter").innerhtml = wins;
             document.getElementById("guess").innerHTML = (argoStorage);
-            
-
 
         }
 
         else if (argoStorage.some(checkLetters) == true) { //notes if someone pressed the key already
             console.log("REPEAT GUESS");
             console.log(argoStorage);
-            document.getElementById("hint").innerHTML = ("YOU ALREADY CHOSE THAT LETTER. TRY AGAIN"); 
+            document.getElementById("hint").innerHTML = ("NOPE! Try again.");
             document.getElementById("guess").innerHTML = (argoStorage);
 
         }
@@ -752,229 +643,619 @@ document.getElementById("secondButton").onclick = function (event) {
             lives--;
             document.getElementById("guessesLeft").innerHTML = (lives);
             document.getElementById("hint").innerHTML = "GAME OVER?? TEST";
-            console.log("BAD LETTER");                       
+            console.log("BAD LETTER");
             event.stopPropagation();
 
         }
 
 
     }
-    
-document.getElementById("winsCounter").innerHTML = (wins);
-}
-/********************************TO DO LIST **************************************** */
 
-//**************RESET BUTTON********************
-/*
-document.getElementById("resetButton").onclick = function (event) {
-    document.getElementById("guessesLeft").innerHTML = (lives);
     document.getElementById("winsCounter").innerHTML = (wins);
-    document.getElementById("letterCountdown").innerHTML = 0;
-    document.getElementById("firstLetter").innerHTML = " ";
-    document.getElementById("secondLetter").innerHTML = " ";
-    document.getElementById("thirdLetter").innerHTML = " ";
-    document.getElementById("fourthLetter").innerHTML = " ";
-    document.getElementById("fifthLetter").innerHTML = " ";
-    document.getElementById("sixthLetter").innerHTML = " ";
-    document.getElementById("seventhLetter").innerHTML = " ";
-    document.getElementById("eighthLetter").innerHTML = " ";
-    document.getElementById("ninthLetter").innerHTML = " ";
-    document.getElementById("tenthLetter").innerHTML = " ";
-    document.getElementById("eleventhLetter").innerHTML = " ";
-    document.getElementById("twelfthLetter").innerHTML = " ";
-    document.getElementById("answer").innerHTML = "Answer:";
-    document.getElementById("hint").innerHTML = "Click one the buttons above to Play!"
-    console.log("Reset Button working");
-
-}
-*/
-
-// Code to compare every letter in the arrays of letters for the correct entry
-// also
-// Connect the user to the presentation by being able to type letters:
-
-
-// Code to make the letters or "guesses" appear in  row
-
-
-//Code to make letters appear when compared with the "answer"
-
-
-
-//Code to count the number of guesses left
-
-
-//Code to restart the game if player wins or loses
-
-/*****************************************************************************
- * Notes for later - I can use the following code example to create new Divs that display data about my movies above in the columns.
- * **************************************************************************************************************
-
-    // Array holds all of the drinks available
-    var drinkList = [
-      "Coffee: $5",
-      "Espresso: $7",
-      "Cappuccino: $6",
-      "Latte: $4",
-      "Tea: $3",
-      "Ice Coffee: $6",
-      "Ice Espresso: $8",
-      "Ice Latte: $6",
-      "Ice Tea: $4"
-    ];
-
-    // 1. Create code that "grabs" the div with the matching id (#drink-options);
-    // ... 
-
-    var targetDiv = document.getElementById("drink-options");
-    targetDiv.textContent = text;
-    // ...
-
-
-    // 2. Create a for loop that creates HTML content of all the drinks using JavaScript.
-    // HINT: You will need to use each of the following methods: createElement, textContent, appendChild
-    // ...
-
-    var text = "Here are drinks we offer: ";
-    var i;
-    for (i = 0; i < drinkList.length; i++) {
-      text += drinkList[i] + "        ";
-    }
-
-    
-    var newDiv = document.createElement("div");
-    newDiv.textContent = (text);
-    targetDiv.appendChild(newDiv);
-
-    **********************************************************/
-
-
-//**************Alphabet checker "if" method****************
-
-
-
-
-/*
-
-document.onkeypress = function (event) {
-
-    var test = ["a","r","r","i","v","a","l"];
-    var alphabet = event.key;
-    console.log(alphabet);
-
-    function checkLetters (letter) {
-        
-        return letter === alphabet.toLowerCase();
-    }
-
-    if (test.some(checkLetters) == true) {
-            
-        //console.log(test[i]);
-        console.log("GOOD LETTER");
-
-
-    } 
-    else {
-            
-        console.log("BAD LETTER");
-    }
 }
 
 
-*/
+//**************HANGMAN: "Airplane" CODE **********************
+//**************HANGMAN: "Airplane" CODE **********************
+//**************HANGMAN: "Airplane" CODE **********************
+//**************HANGMAN: "Airplane" CODE **********************
+//**************HANGMAN: "Airplane" CODE **********************
+document.getElementById("thirdButton").onclick = function (event) {
+    console.log("thirdButton test");
 
-/************************************************* */
-/************************************************* */
-/*****************NOTES******************************** */
-/************************************************* */
-/************************************************* */
-/*
-document.onkeypress = function (event) {
+    //Resets the number of lives and letter storage arrays when the button is clicked again.
+    var lives = 8;
+    airplaneStorage = [];
+    document.getElementById("guess").innerHTML = (airplaneStorage);
 
-    //local variable and function to kickstart the letter checker
-    var test = ["a","r","r","i","v","a","l"];
-    var alphabet = event.key;
-    console.log(alphabet);
-
-
-    function checkLetters (letter) {
-        
-        return letter === alphabet.toLowerCase();
-    }
-       
-   // }
-    //for (i = 0; i < moviesList[4].letters.length; i++) {}
-   //  {
-   // if (test.some(checkLetters)= true ) {
-    
-       //var arrayElement = (test[i]);
-       //if (arrayElement === alphabet.toLowerCase()) {
-        if (test.some(checkLetters) == true) {
-            
-            //console.log(test[i]);
-            console.log("GOOD LETTER");
+    moviesList[2].lettercount = 8;
+    document.getElementById("letterCountdown").innerHTML = (moviesList[2].lettercount);
 
 
-        } 
+    //"resets" the appearance of the counters and displays the word's hint
+    document.getElementById("guessesLeft").innerHTML = (lives);
+    document.getElementById("hint").innerHTML = ("A somewhat accurate depiction of Air Travel.");
 
-        
-        
-        else {
-            
-            console.log("BAD LETTER");
+    //"resets" every letter block
+    document.getElementById("firstLetter").innerHTML = ("");
+    document.getElementById("secondLetter").innerHTML = ("");
+    document.getElementById("thirdLetter").innerHTML = ("");
+    document.getElementById("fourthLetter").innerHTML = ("");
+    document.getElementById("fifthLetter").innerHTML = ("");
+    document.getElementById("sixthLetter").innerHTML = ("");
+    document.getElementById("seventhLetter").innerHTML = ("");
+    document.getElementById("eighthLetter").innerHTML = ("");
+    document.getElementById("ninthLetter").innerHTML = ("");
+    document.getElementById("tenthLetter").innerHTML = ("");
+    document.getElementById("eleventhLetter").innerHTML = ("");
+    document.getElementById("twelfthLetter").innerHTML = ("");
+
+
+    //begin code to check key presses and start matching word's countdown
+    document.onkeypress = function (event) {
+        document.getElementById("letterCountdown").innerHTML = (moviesList[2].lettercount);
+
+
+        //variables to make the check letter function work
+        var userLetters = event.key;
+        userText.textContent = userLetters;
+
+        //spotchecking
+        console.log(userLetters);
+        console.log(airplaneStorage);
+
+        //function for checking users keystrokes against the object.arrays above
+        function checkLetters(letter) {
+            return letter === userLetters.toLowerCase();
         }
+
+        //sets the conditions for running this code as long as number of lives is greater than 0)
+        if (
+            (lives > 0) //checks to make sure user isn't out of lives
+            &&
+            (moviesList[2].lettercount > 0) // once the count reaches 0 the player has won
+            &&
+            (moviesList[2].letters.some(checkLetters) == true) // primary function to ensure letter is "correct"
+            &&
+            (airplaneStorage.some(checkLetters) === false) //make sure letter hasn't been used before
+        ) {
+
+            //code to push the letters to storage array
+            airplaneStorage.push(userLetters);
+
+            //code to push the letter to the display
+            var node = document.createElement("p");                 // Create a <li> node
+            var textnode = document.createTextNode(airplaneStorage);         // Create a text node
+            node.appendChild(textnode);                              // Append the text to <li>
+            document.getElementById("guess").appendChild(node);
+
+            //Begins displaying the counters
+            document.getElementById("guessesLeft").innerHTML = (lives);
+            document.getElementById("letterCountdown").innerHTML = (moviesList[2].lettercount);;
+
+
+            //checks the letters against the users input and displays them in the proper boxes
+            switch (userLetters.toLowerCase()) {
+                case "a":
+                    moviesList[2].lettercount -= 2;
+                    document.getElementById("letterCountdown").innerHTML = (moviesList[2].lettercount);
+                    document.getElementById("hint").innerHTML = "NICE ONE!";
+                    document.getElementById("firstLetter").innerHTML = "A";
+                    document.getElementById("firstLetter").style.fontSize = "30px";
+                    document.getElementById("sixthLetter").innerHTML = "A";
+                    document.getElementById("sixthLetter").style.fontSize = "30px";
+
+                    break;
+
+                case "i":
+                    moviesList[2].lettercount--;
+                    document.getElementById("letterCountdown").innerHTML = (moviesList[2].lettercount);
+                    document.getElementById("hint").innerHTML = "YOU GOT ANOTHER!";
+                    document.getElementById("secondLetter").innerHTML = "I";
+                    document.getElementById("secondLetter").style.fontSize = "30px";
+
+                    break;
+
+                case "r":
+                    moviesList[2].lettercount--;
+                    document.getElementById("letterCountdown").innerHTML = (moviesList[2].lettercount);
+                    document.getElementById("hint").innerHTML = "GOOD JOB!";
+                    document.getElementById("thirdLetter").innerHTML = "R";
+                    document.getElementById("thirdLetter").style.fontSize = "30px";
+
+                    break;
+
+                case "p":
+                    moviesList[2].lettercount--;
+                    document.getElementById("letterCountdown").innerHTML = (moviesList[2].lettercount);
+                    document.getElementById("hint").innerHTML = "NAILED IT!";
+                    document.getElementById("fourthLetter").innerHTML = "P";
+                    document.getElementById("fourthLetter").style.fontSize = "30px";
+
+                    break;
+
+                case "l":
+                    moviesList[2].lettercount--;
+                    document.getElementById("letterCountdown").innerHTML = (moviesList[2].lettercount);
+                    document.getElementById("hint").innerHTML = "NOICE!";
+                    document.getElementById("fifthLetter").innerHTML = "L";
+                    document.getElementById("fifthLetter").style.fontSize = "30px";
+
+                    break;
+
+                case "n":
+                    moviesList[2].lettercount--;
+                    document.getElementById("letterCountdown").innerHTML = (moviesList[2].lettercount);
+                    document.getElementById("hint").innerHTML = "A1!";
+                    document.getElementById("seventhLetter").innerHTML = "N";
+                    document.getElementById("seventhLetter").style.fontSize = "30px";
+
+                    break;
+
+                case "e":
+                    moviesList[2].lettercount--;
+                    document.getElementById("letterCountdown").innerHTML = (moviesList[2].lettercount);
+                    document.getElementById("hint").innerHTML = "Steak Sauce!";
+                    document.getElementById("eighthLetter").innerHTML = "E";
+                    document.getElementById("eighthLetter").style.fontSize = "30px";
+
+                    break;
+
+                default:
+
+                    document.getElementById("hint").innerHTML = "NOT SURE WHAT JUST HAPPENED. TRY AGAIN.";
+
+            }
+
+            //updates the counters
+            document.getElementById("guessesLeft").innerHTML = (lives);
+            document.getElementById("letterCountdown").innerHTML = (moviesList[2].lettercount);
+
+        }
+
+        else if (
+            (lives > 0) //checks to make sure user isn't out of lives
+            &&
+            (moviesList[2].lettercount > 0) // once the count reaches 0 the player has won
+        ) {
+            lives--;
+            document.getElementById("guessesLeft").innerHTML = (lives);
+            airplaneStorage.push(userLetters); // pushes any OTHER LETTERS TO STORAGE
+            document.getElementById("hint").innerHTML = ("NOPE! Try again.");
+            document.getElementById("guess").innerHTML = (airplaneStorage);
+
+        }
+
+        else if (lives <= 0) {
+            document.getElementById("guess").innerHTML = (airplaneStorage);
+            document.getElementById("hint").innerHTML = ("You Lose!");
+            event.stopPropagation();
+
+        }
+
+        else if ((moviesList[2].lettercount === 0)) { // stops the game and increases the wins counter
+            wins++;
+            document.getElementById("guess").innerHTML = (airplaneStorage);
+            document.getElementById("hint").innerHTML = ("You Win!");
+            document.getElementById("winsCounter").innerhtml = wins;
+            document.getElementById("guess").innerHTML = (airplaneStorage);
+
+        }
+
+        else if (airplaneStorage.some(checkLetters) == true) { //notes if someone pressed the key already
+            console.log("REPEAT GUESS");
+            console.log(airplaneStorage);
+            document.getElementById("hint").innerHTML = ("NOPE! Try again.");
+            document.getElementById("guess").innerHTML = (airplaneStorage);
+
+        }
+
+        else { //code to note a bad key press
+            lives--;
+            document.getElementById("guessesLeft").innerHTML = (lives);
+            document.getElementById("hint").innerHTML = "GAME OVER?? TEST";
+            console.log("BAD LETTER");
+            event.stopPropagation();
+
+        }
+
+
     }
-      //  if (condition) {
-         //   block of code to be executed if the condition is true
-       // } else { 
-       //     block of code to be executed if the condition is false
-       // }
+
+    document.getElementById("winsCounter").innerHTML = (wins);
+}
 
 
-/*
+/************************HANGMAN: "Aliens" Code ************************ */
+/************************HANGMAN: "Aliens" Code ************************ */
+/************************HANGMAN: "Aliens" Code ************************ */
+/************************HANGMAN: "Aliens" Code ************************ */
+/************************HANGMAN: "Aliens" Code ************************ */
 
 
- 
-/* for(var i in myArray) {
-    var arrayElement = myArray[i];
-    if (arrayElement == formInput) {
-         //Do your stuff
+document.getElementById("fourthButton").onclick = function (event) {
+
+    //Resets the number of lives and letter storage arrays when the button is clicked again.
+    var lives = 8;
+    aliensStorage = [];
+    document.getElementById("guess").innerHTML = (aliensStorage);
+
+    moviesList[1].lettercount = 6;
+    document.getElementById("letterCountdown").innerHTML = (moviesList[1].lettercount);
+
+
+    //"resets" the appearance of the counters and displays the word's hint
+    document.getElementById("guessesLeft").innerHTML = (lives);
+    document.getElementById("hint").innerHTML = ("Hi. I'm Sigourney Weaver. This movie was nothing like finding Dory.");
+
+    //"resets" every letter block
+    document.getElementById("firstLetter").innerHTML = ("");
+    document.getElementById("secondLetter").innerHTML = ("");
+    document.getElementById("thirdLetter").innerHTML = ("");
+    document.getElementById("fourthLetter").innerHTML = ("");
+    document.getElementById("fifthLetter").innerHTML = ("");
+    document.getElementById("sixthLetter").innerHTML = ("");
+    document.getElementById("seventhLetter").innerHTML = ("");
+    document.getElementById("eighthLetter").innerHTML = ("");
+    document.getElementById("ninthLetter").innerHTML = ("");
+    document.getElementById("tenthLetter").innerHTML = ("");
+    document.getElementById("eleventhLetter").innerHTML = ("");
+    document.getElementById("twelfthLetter").innerHTML = ("");
+
+
+    //begin code to check key presses and start matching word's countdown
+    document.onkeypress = function (event) {
+        document.getElementById("letterCountdown").innerHTML = (moviesList[1].lettercount);
+
+        //variables to make the check letter function work
+        var userLetters = event.key;
+        userText.textContent = userLetters;
+
+        //spotchecking
+        console.log(userLetters);
+        console.log(aliensStorage);
+
+        //function for checking users keystrokes against the object.arrays above
+        function checkLetters(letter) {
+            return letter === userLetters.toLowerCase();
+        }
+
+
+        //sets the conditions for running this code as long as number of lives is greater than 0)
+        if (
+            (lives > 0) //checks to make sure user isn't out of lives
+            &&
+            (moviesList[1].lettercount > 0) // once the count reaches 0 the player has won
+            &&
+            (moviesList[1].letters.some(checkLetters) == true) // primary function to ensure letter is "correct"
+            &&
+            (aliensStorage.some(checkLetters) === false) //make sure letter hasn't been used before
+        ) {
+
+            //code to push the letters to storage array
+            aliensStorage.push(userLetters);
+
+            //code to push the letter to the display
+            var node = document.createElement("p");                 // Create a <li> node
+            var textnode = document.createTextNode(aliensStorage);         // Create a text node
+            node.appendChild(textnode);                              // Append the text to <li>
+            document.getElementById("guess").appendChild(node);
+
+            //Begins displaying the counters
+            document.getElementById("guessesLeft").innerHTML = (lives);
+            document.getElementById("letterCountdown").innerHTML = (moviesList[1].lettercount);;
+
+
+            //checks the letters against the users input and displays them in the proper boxes
+            switch (userLetters.toLowerCase()) {
+                case "a":
+                    moviesList[1].lettercount--;
+                    document.getElementById("letterCountdown").innerHTML = (moviesList[1].lettercount);
+                    document.getElementById("hint").innerHTML = "NICE ONE!";
+                    document.getElementById("firstLetter").innerHTML = "A";
+                    document.getElementById("firstLetter").style.fontSize = "30px";
+
+                    break;
+
+                case "l":
+                    moviesList[1].lettercount--;
+                    document.getElementById("letterCountdown").innerHTML = (moviesList[1].lettercount);
+                    document.getElementById("hint").innerHTML = "YOU GOT ANOTHER!";
+                    document.getElementById("secondLetter").innerHTML = "L";
+                    document.getElementById("secondLetter").style.fontSize = "30px";
+
+                    break;
+
+                case "i":
+                    moviesList[1].lettercount--;
+                    document.getElementById("letterCountdown").innerHTML = (moviesList[1].lettercount);
+                    document.getElementById("hint").innerHTML = "GOOD JOB!";
+                    document.getElementById("thirdLetter").innerHTML = "I";
+                    document.getElementById("thirdLetter").style.fontSize = "30px";
+
+                    break;
+
+                case "e":
+                    moviesList[1].lettercount--;
+                    document.getElementById("letterCountdown").innerHTML = (moviesList[1].lettercount);
+                    document.getElementById("hint").innerHTML = "NAILED IT!";
+                    document.getElementById("fourthLetter").innerHTML = "E";
+                    document.getElementById("fourthLetter").style.fontSize = "30px";
+
+                    break;
+
+                case "n":
+                    moviesList[1].lettercount--;
+                    document.getElementById("letterCountdown").innerHTML = (moviesList[1].lettercount);
+                    document.getElementById("hint").innerHTML = "NOICE!";
+                    document.getElementById("fifthLetter").innerHTML = "N";
+                    document.getElementById("fifthLetter").style.fontSize = "30px";
+
+                    break;
+
+                case "s":
+                    moviesList[1].lettercount--;
+                    document.getElementById("letterCountdown").innerHTML = (moviesList[1].lettercount);
+                    document.getElementById("hint").innerHTML = "A1!";
+                    document.getElementById("sixthLetter").innerHTML = "S";
+                    document.getElementById("sixthLetter").style.fontSize = "30px";
+
+                    break;
+
+                default:
+
+                    document.getElementById("hint").innerHTML = "NOT SURE WHAT JUST HAPPENED. TRY AGAIN.";
+
+
+            }
+
+            //updates the counters
+            document.getElementById("guessesLeft").innerHTML = (lives);
+            document.getElementById("letterCountdown").innerHTML = (moviesList[1].lettercount);
+
+
+        }
+
+        else if (
+            (lives > 0) //checks to make sure user isn't out of lives
+            &&
+            (moviesList[1].lettercount > 0) // once the count reaches 0 the player has won
+        ) {
+            lives--;
+            document.getElementById("guessesLeft").innerHTML = (lives);
+            aliensStorage.push(userLetters); // pushes any OTHER LETTERS TO STORAGE
+            document.getElementById("hint").innerHTML = ("NOPE! Try again.");
+            document.getElementById("guess").innerHTML = (aliensStorage);
+
+        }
+
+        else if (lives <= 0) {
+            document.getElementById("guess").innerHTML = (aliensStorage);
+            document.getElementById("hint").innerHTML = ("You Lose!");
+            event.stopPropagation();
+
+        }
+
+        else if ((moviesList[1].lettercount === 0)) { // stops the game and increases the wins counter
+            wins++;
+            document.getElementById("guess").innerHTML = (aliensStorage);
+            document.getElementById("hint").innerHTML = ("You Win!");
+            document.getElementById("winsCounter").innerhtml = wins;
+            document.getElementById("guess").innerHTML = (aliensStorage);
+
+        }
+
+        else if (aliensStorage.some(checkLetters) == true) { //notes if someone pressed the key already
+            console.log("REPEAT GUESS");
+            console.log(aliensStorage);
+            document.getElementById("hint").innerHTML = ("NOPE! Try again.");
+            document.getElementById("guess").innerHTML = (aliensStorage);
+
+        }
+
+        else { //code to note a bad key press
+            lives--;
+            document.getElementById("guessesLeft").innerHTML = (lives);
+            document.getElementById("hint").innerHTML = "GAME OVER?? TEST";
+            console.log("BAD LETTER");
+            event.stopPropagation();
+
+        }
+
     }
-} */
+
+    document.getElementById("winsCounter").innerHTML = (wins);
+}
+
+
+/************************HANGMAN: "Arrival" Code ************************ */
+/************************HANGMAN: "Arrival" Code ************************ */
+/************************HANGMAN: "Arrival" Code ************************ */
+/************************HANGMAN: "Arrival" Code ************************ */
+/************************HANGMAN: "Arrival" Code ************************ */
+
+
+document.getElementById("fifthButton").onclick = function (event) {
+
+    //Resets the number of lives and letter storage arrays when the button is clicked again.
+    let lives = 8;
+    arrivalStorage = [];
+    document.getElementById("guess").innerHTML = (arrivalStorage);
+
+    moviesList[0].lettercount = 7;
+    document.getElementById("letterCountdown").innerHTML = (moviesList[0].lettercount);
+
+
+    //"resets" the appearance of the counters and displays the word's hint
+    document.getElementById("guessesLeft").innerHTML = (lives);
+    document.getElementById("hint").innerHTML = (" 'The day they _______' with Amy Adams and Jeremy Renner.");
+
+    //"resets" every letter block
+    document.getElementById("firstLetter").innerHTML = ("");
+    document.getElementById("secondLetter").innerHTML = ("");
+    document.getElementById("thirdLetter").innerHTML = ("");
+    document.getElementById("fourthLetter").innerHTML = ("");
+    document.getElementById("fifthLetter").innerHTML = ("");
+    document.getElementById("sixthLetter").innerHTML = ("");
+    document.getElementById("seventhLetter").innerHTML = ("");
+    document.getElementById("eighthLetter").innerHTML = ("");
+    document.getElementById("ninthLetter").innerHTML = ("");
+    document.getElementById("tenthLetter").innerHTML = ("");
+    document.getElementById("eleventhLetter").innerHTML = ("");
+    document.getElementById("twelfthLetter").innerHTML = ("");
+
+
+    //begin code to check key presses and start matching word's countdown
+    document.onkeypress = function (event) {
+        document.getElementById("letterCountdown").innerHTML = (moviesList[0].lettercount);
 
 
 
 
+        //variables to make the check letter function work
+        var userLetters = event.key;
+        userText.textContent = userLetters;
+
+        //function for checking users keystrokes against the object.arrays above
+        function checkLetters(letter) {
+            return letter === userLetters.toLowerCase();
+        }
+
+        //sets the conditions for running this code as long as number of lives is greater than 0)
+        if (
+            (lives > 0) //checks to make sure user isn't out of lives
+            &&
+            (moviesList[0].lettercount > 0) // once the count reaches 0 the player has won
+            &&
+            (moviesList[0].letters.some(checkLetters) == true) // primary function to ensure letter is "correct"
+            &&
+            (arrivalStorage.some(checkLetters) === false) //make sure letter hasn't been used before
+        ) {
+
+            //code to push the letters to storage array
+            arrivalStorage.push(userLetters);
+
+            //code to push the letter to the display
+            var node = document.createElement("p");                 // Create a <li> node
+            var textnode = document.createTextNode(arrivalStorage);         // Create a text node
+            node.appendChild(textnode);                              // Append the text to <li>
+            document.getElementById("guess").appendChild(node);
+
+            //Begins displaying the counters
+            document.getElementById("guessesLeft").innerHTML = (lives);
+            document.getElementById("letterCountdown").innerHTML = (moviesList[0].lettercount);
 
 
-/*
-var array = [1, 2, 3, 4, 5];
+            //checks the letters against the users input and displays them in the proper boxes
+            switch (userLetters.toLowerCase()) {
+                case "a":
+                    moviesList[0].lettercount--;
+                    document.getElementById("letterCountdown").innerHTML = (moviesList[0].lettercount);
+                    document.getElementById("hint").innerHTML = "NICE ONE!";
+                    document.getElementById("firstLetter").innerHTML = "A";
+                    document.getElementById("firstLetter").style.fontSize = "30px";
+                    document.getElementById("sixthLetter").innerHTML = "A";
+                    document.getElementById("sixthLetter").style.fontSize = "30px";
 
-var even = function(element) {
-// checks whether an element is even
-return element % 2 === 0;
-};
+                    break;
 
-console.log(array.some(even));
-// expected output: true
-*/
+                case "r":
+                    moviesList[0].lettercount -= 2;
+                    document.getElementById("letterCountdown").innerHTML = (moviesList[0].lettercount);
+                    document.getElementById("hint").innerHTML = "YOU GOT ANOTHER!";
+                    document.getElementById("secondLetter").innerHTML = "R";
+                    document.getElementById("secondLetter").style.fontSize = "30px";
+                    document.getElementById("thirdLetter").innerHTML = "R";
+                    document.getElementById("thirdLetter").style.fontSize = "30px";
 
+                    break;
 
-            //****************************Letter Check / Logs the previous letters***************** */
-            
-            //function checkLetters (letter) {
-                    //return letter === userLetters.toLowerCase();
-            //}
-                          
-                //if (moviesList[4].letters.some(checkLetters) == true) {
-                        
-                   // console.log("GOOD LETTER");
-            
-            
-                //} 
-                //else {
-                    
-                    //console.log("BAD LETTER");
-                    //event.stopPropagation();
-               // }
+                case "i":
+                    moviesList[0].lettercount--;
+                    document.getElementById("letterCountdown").innerHTML = (moviesList[0].lettercount);
+                    document.getElementById("hint").innerHTML = "GOOD JOB!";
+                    document.getElementById("fourthLetter").innerHTML = "I";
+                    document.getElementById("fourthLetter").style.fontSize = "30px";
 
+                    break;
+
+                case "v":
+                    moviesList[0].lettercount--;
+                    document.getElementById("letterCountdown").innerHTML = (moviesList[0].lettercount);
+                    document.getElementById("hint").innerHTML = "NAILED IT!";
+                    document.getElementById("fifthLetter").innerHTML = "V";
+                    document.getElementById("fifthLetter").style.fontSize = "30px";
+
+                    break;
+
+                case "l":
+                    moviesList[0].lettercount--;
+                    document.getElementById("letterCountdown").innerHTML = (moviesList[0].lettercount);
+                    document.getElementById("hint").innerHTML = "NOICE!";
+                    document.getElementById("seventhLetter").innerHTML = "L";
+                    document.getElementById("seventhLetter").style.fontSize = "30px";
+
+                    break;
+
+                default:
+
+                    document.getElementById("hint").innerHTML = "NOT SURE WHAT JUST HAPPENED. TRY AGAIN.";
+
+            }
+
+            //updates the counters
+            document.getElementById("guessesLeft").innerHTML = (lives);
+            document.getElementById("letterCountdown").innerHTML = (moviesList[0].lettercount);
+
+        }
+
+        else if (
+            (lives > 0) //checks to make sure user isn't out of lives
+            &&
+            (moviesList[0].lettercount > 0) // once the count reaches 0 the player has won
+        ) {
+            lives--;
+            document.getElementById("guessesLeft").innerHTML = (lives);
+            arrivalStorage.push(userLetters); // pushes any OTHER LETTERS TO STORAGE
+            document.getElementById("hint").innerHTML = ("YOU ALREADY CHOSE THAT LETTER. TRY AGAIN");
+            document.getElementById("guess").innerHTML = (arrivalStorage);
+
+        }
+
+        else if (lives <= 0) {
+            document.getElementById("guess").innerHTML = (arrivalStorage);
+            document.getElementById("hint").innerHTML = ("You Lose!");
+            event.stopPropagation();
+
+        }
+
+        else if ((moviesList[0].lettercount === 0)) { // stops the game and increases the wins counter
+            wins++;
+            document.getElementById("guess").innerHTML = (arrivalStorage);
+            document.getElementById("hint").innerHTML = ("You Win!");
+            document.getElementById("winsCounter").innerhtml = wins;
+            document.getElementById("guess").innerHTML = (arrivalStorage);
+
+        }
+
+        else if (arrivalStorage.some(checkLetters) == true) { //notes if someone pressed the key already
+            console.log("REPEAT GUESS");
+            console.log(arrivalStorage);
+            document.getElementById("hint").innerHTML = ("YOU ALREADY CHOSE THAT LETTER. TRY AGAIN");
+            document.getElementById("guess").innerHTML = (arrivalStorage);
+
+        }
+
+        else { //code to note a bad key press
+            lives--;
+            document.getElementById("guessesLeft").innerHTML = (lives);
+            document.getElementById("hint").innerHTML = "GAME OVER?? TEST";
+            console.log("BAD LETTER");
+            event.stopPropagation();
+
+        }
+
+    }
+
+    document.getElementById("winsCounter").innerHTML = (wins);
+}
